@@ -23,7 +23,7 @@ public class Role {
 //    @Size(min = 1, max = 3, message = "ShortHand must be between 1 and 3 characters!")
     private char shortHand;
     @ManyToOne
-    private com.daixin.schedule.models.Employee employee;
+    private Employee employee;
 
     // Constructor
     public Role () {}

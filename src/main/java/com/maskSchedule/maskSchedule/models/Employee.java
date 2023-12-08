@@ -1,4 +1,4 @@
-package com.daixin.schedule.models;
+package com.maskSchedule.maskSchedule.models;
 
 import com.maskSchedule.maskSchedule.models.Role;
 import jakarta.persistence.*;
@@ -23,12 +23,8 @@ public class Employee {
     private boolean isActive;
     private boolean isTraining;
 
-
-
-
-
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "work_station_id")
+    @JoinColumn(name = "role_id")
     private List<Role> role = new ArrayList<>();
 
     //Constructors
@@ -95,12 +91,12 @@ public class Employee {
         isTraining = training;
     }
 
-    public List<Role> getWorkStation() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setWorkStation(List<Role> workStation) {
-        this.role = workStation;
+    public void setRole(List<Role> workStation) {
+        this.role = role;
     }
 
 
