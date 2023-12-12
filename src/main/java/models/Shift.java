@@ -1,11 +1,10 @@
 package models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 @Entity
 public class Shift {
@@ -13,8 +12,9 @@ public class Shift {
     @Id
     @GeneratedValue
     private int id;
-
+    @ManyToMany
     private Role role;
+    @ManyToOne
     private Employee employee;
     private String shiftDay; //day of the week scheduled
     private LocalTime shiftStart;
@@ -36,6 +36,18 @@ public class Shift {
     shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
 
     //Hash mapping - need help
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Shift shift)) return false;
+        return id == shift.id && Objects.equals(role, shift.role) && Objects.equals(employee, shift.employee) && Objects.equals(shiftDay, shift.shiftDay) && Objects.equals(shiftStart, shift.shiftStart) && Objects.equals(shiftEnd, shift.shiftEnd) && Objects.equals(shiftHours, shift.shiftHours);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, role, employee, shiftDay, shiftStart, shiftEnd, shiftHours);
+    }
 
 
     //Getters and Setters
