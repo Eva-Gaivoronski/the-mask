@@ -2,6 +2,7 @@ package com.maskSchedule.maskSchedule.models;
 
 import com.maskSchedule.maskSchedule.models.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +23,10 @@ public class Employee {
     private int hours;
     private boolean isActive;
     private boolean isTraining;
+    @Size(min = 7, message = "Phone number should be atleast 7 digits.")
+    private String phoneNumber;
+    @Email
+    private String eMail;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
@@ -99,5 +104,19 @@ public class Employee {
         this.role = role;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
 }
