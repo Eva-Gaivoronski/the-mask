@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,7 +25,7 @@ public class Account {
     //Constructor
     public Account() {}
 
-    public Account(Employee employee, boolean isAdmin, List<Shift> someShifts, ) {
+    public Account(Employee employee, boolean isAdmin, List<Shift> someShifts) {
         this.employee = employee;
         this.isAdmin = isAdmin;
         this.shifts = someShifts;
