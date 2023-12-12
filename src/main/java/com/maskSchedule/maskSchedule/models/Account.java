@@ -12,22 +12,23 @@ public class Account {
     @GeneratedValue
     private int id;
 
+    @OneToOne
+    private Employee employee;
+
     @NotNull
     private boolean isAdmin;
 
     @ManyToMany
     private List<Shift> shifts = new ArrayList<>();
 
-    @OneToMany
-    private List<Role> roles = new ArrayList<>();
-
     //Constructor
     public Account() {}
 
-    public Account(boolean isAdmin, List<Shift> someShifts, List<Role> someRoles) {
+    public Account(Employee employee, boolean isAdmin, List<Shift> someShifts, ) {
+        this.employee = employee;
         this.isAdmin = isAdmin;
         this.shifts = someShifts;
-        this.roles = someRoles;
+
     }
 
     //Getters and setters
@@ -39,8 +40,8 @@ public class Account {
     public List<Shift> getShifts() { return shifts; }
     public void setShifts(List<Shift> shifts) { this.shifts = shifts; }
 
-    public List<Role> getRoles() { return roles; }
-    public void setRoles(List<Role> roles) { this.roles = roles; }
+    public Employee getEmployee() { return employee;}
+    public void setEmployee(Employee employee) { this.employee = employee; }
 
     //hashCode and equals()
     @Override
