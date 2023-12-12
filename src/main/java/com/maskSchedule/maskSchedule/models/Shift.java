@@ -1,4 +1,4 @@
-package models;
+package com.maskSchedule.maskSchedule.models;
 
 import jakarta.persistence.*;
 
@@ -31,9 +31,11 @@ public class Shift {
         this.shiftDay = ShiftDay;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
+
+        shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
+
     }
 
-    shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
 
     //Hash mapping - need help
 
