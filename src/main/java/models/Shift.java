@@ -3,6 +3,7 @@ package models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Shift {
@@ -10,17 +11,23 @@ public class Shift {
     @Id
     @GeneratedValue
     private int id;
+
     private Role role;
+
     private Account account;
+
     private Employee employee;
-    private String ShiftDay;
+    private String shiftDay;
 
     //Constructors
 
     public Shift () {}
 
-    public Shift(Role role, Account account, Employee employee, String ShiftDay) {
-
+    public Shift(Role role, Account account, Employee employee, String ShiftDay) { // ?????
+        this.role = role;
+        this.account = account;
+        this.employee = employee;
+        this.shiftDay = ShiftDay;
     }
 
     //Hash mapping - need help
