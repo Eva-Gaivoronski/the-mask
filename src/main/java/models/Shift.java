@@ -3,7 +3,9 @@ package models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class Shift {
@@ -13,24 +15,28 @@ public class Shift {
     private int id;
 
     private Role role;
-
-    private Account account;
-
     private Employee employee;
-    private String shiftDay;
+    private String shiftDay; //day of the week scheduled
+    private LocalTime shiftStart;
+    private LocalTime shiftEnd;
+    private Long shiftHours;
 
     //Constructors
-
     public Shift () {}
 
-    public Shift(Role role, Account account, Employee employee, String ShiftDay) { // ?????
+
+    public Shift(Role role, Employee employee, String ShiftDay, LocalTime shiftStart, LocalTime shiftEnd) { // ?????
         this.role = role;
-        this.account = account;
         this.employee = employee;
         this.shiftDay = ShiftDay;
+        this.shiftStart = shiftStart;
+        this.shiftEnd = shiftEnd;
     }
 
+    shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
+
     //Hash mapping - need help
+
 
     //Getters and Setters
 
@@ -46,14 +52,6 @@ public class Shift {
         this.role = role;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
@@ -63,10 +61,34 @@ public class Shift {
     }
 
     public String getShiftDay() {
-        return ShiftDay;
+        return shiftDay;
     }
 
     public void setShiftDay(String shiftDay) {
-        ShiftDay = shiftDay;
+        shiftDay = shiftDay;
+    }
+
+    public LocalTime getShiftStart() {
+        return shiftStart;
+    }
+
+    public void setShiftStart(LocalTime shiftStart) {
+        this.shiftStart = shiftStart;
+    }
+
+    public LocalTime getShiftEnd() {
+        return shiftEnd;
+    }
+
+    public void setShiftEnd(LocalTime shiftEnd) {
+        this.shiftEnd = shiftEnd;
+    }
+
+    public Long getShiftHours() {
+        return shiftHours;
+    }
+
+    public void setShiftHours(Long shiftHours) {
+        this.shiftHours = shiftHours;
     }
 }
