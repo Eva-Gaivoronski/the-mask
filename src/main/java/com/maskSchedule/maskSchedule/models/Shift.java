@@ -12,7 +12,7 @@ public class Shift {
     @Id
     @GeneratedValue
     private int id;
-    @ManyToMany
+    @ManyToOne
     private Role role;
     @ManyToOne
     private Employee employee;
