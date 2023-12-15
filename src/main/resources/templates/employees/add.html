@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<h1></h1>
+<header th:replace="fragments :: header"></header>
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${employee.name}" class="form-control">
+        </label>
+        <p class="error" th:errors="${employee.name}"></p>
+        <label>Hours
+            <input th:field="${employee.hours}" class="form-control">
+        </label>
+        <p class="error" th:errors="${employee.hours}"></p>
+    </div>
+    <div class="form-group">
+        <label>Active</label>
+        <input type="checkbox"  th:checked="${employee.isActive}" name="Active">
+        <label>Training</label>
+        <input type="checkbox" th:checked="${employee.isTraining}" name="Training">
+    </div>
+    <div class="form-group">
+        <label th:for="role">Roles</label>
+        <th:block th:each="role : ${role}">
+            <input type="checkbox" name="role" th:value="${role.id}">
+            <label th:text="${role.name}"></label>
+        </th:block>
+    </div>
+    <div>
+        <input type="submit" value="Add" class="btn btn-primary">
+    </div>
+</form>
+
+</body>
+</html>
