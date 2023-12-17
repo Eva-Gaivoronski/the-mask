@@ -66,4 +66,17 @@ public class EmployeeController {
         }
         return "employees/edit";
     }
+
+    @PostMapping("edit")
+    public String processingEmployeeEditForm (Model model, int employeeId, String name) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        if (optionalEmployee.isPresent()) {
+            Employee employee = (Employee) optionalEmployee.get();
+            model.addAttribute("employee", employee);
+            employee.setName(name);
+            employeeRepository.save(employee);
+            return "redirect:/employees";
+        }
+        return "redirect:/employees";
+    }
 }

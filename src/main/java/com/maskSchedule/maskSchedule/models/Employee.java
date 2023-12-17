@@ -100,7 +100,7 @@ public class Employee {
         return role;
     }
 
-    public void setRole(List<Role> workStation) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 
