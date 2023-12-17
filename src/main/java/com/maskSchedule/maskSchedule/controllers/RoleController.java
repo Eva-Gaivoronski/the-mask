@@ -57,4 +57,17 @@ public class RoleController {
         }
         return "roles/edit";
     }
+
+    @PostMapping("edit")
+    public String processingRoleEditForm (Model model, int roleId, String name) {
+        Optional<Role> optionalRole = roleRepository.findById(roleId);
+        if (optionalRole.isPresent()) {
+            Role role = (Role) optionalRole.get();
+            model.addAttribute("role", role);
+            role.setName(name);
+            roleRepository.save(role);
+            return "redirect:/roles";
+        }
+        return "redirect:/roles";
+    }
 }
