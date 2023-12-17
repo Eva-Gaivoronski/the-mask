@@ -5,24 +5,21 @@
 <body>
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
-<form method="post" action="/employees/edit">
+<form method="post" action="/roles/edit">
     <div class="form-group">
         <label>
-            <input type="hidden" th:value="${employee.id}" name="employeeId">
+            <input type="hidden" th:value="${role.id}" name="roleId">
         </label>
         <label>Name
-            <input type="text" name="name" th:field="${employee.name}" class="form-control">
+            <input th:field="${role.name}" class="form-control">
         </label>
     </div>
     <div class="form-group">
         <label></label>
     </div>
     <div class="form-group">
-        <input type="submit" value="Edit Employee" class="btn btn-success">
+        <input type="submit" value="Edit Role" class="btn btn-success">
     </div>
 
 
 </form>
-
-</body>
-</html>
