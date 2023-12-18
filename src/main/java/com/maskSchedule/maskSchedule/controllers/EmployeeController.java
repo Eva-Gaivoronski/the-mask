@@ -61,19 +61,30 @@ public class EmployeeController {
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isPresent()){
             Employee employee = (Employee) optionalEmployee.get();
+
             model.addAttribute("employee", employee);
+            model.addAttribute("roles", roleRepository.findAll());
+
             return "employees/edit";
         }
         return "employees/edit";
     }
 
     @PostMapping("edit")
-    public String processingEmployeeEditForm (Model model, int employeeId, String name) {
+    public String processingEmployeeEditForm (Model model, int employeeId, String name, String email, @RequestParam List<Integer> role) {
+        List<Role> roleObject = (List<Role>) roleRepository.findAllById(role);
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isPresent()) {
             Employee employee = (Employee) optionalEmployee.get();
+
+
             model.addAttribute("employee", employee);
+            employee.setRole(roleObject);
+            model.addAttribute("role", roleObject);
+
             employee.setName(name);
+            employee.seteMail(email);
+
             employeeRepository.save(employee);
             return "redirect:/employees";
         }
