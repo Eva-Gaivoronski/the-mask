@@ -28,8 +28,7 @@ public class Employee {
     @Email
     private String eMail;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Role> role = new ArrayList<>();
 
     //Constructors
