@@ -62,6 +62,7 @@ public class EmployeeController {
         if (optionalEmployee.isPresent()){
             Employee employee = (Employee) optionalEmployee.get();
 
+            model.addAttribute("title", "Edit Employee");
             model.addAttribute("employee", employee);
             model.addAttribute("roles", roleRepository.findAll());
 
@@ -71,7 +72,9 @@ public class EmployeeController {
     }
 
     @PostMapping("edit")
-    public String processingEmployeeEditForm (Model model, int employeeId, String name, String email, @RequestParam List<Integer> role) {
+    public String processingEmployeeEditForm (int employeeId,  String name, String email, Model model,
+                                              @RequestParam List<Integer> role) {
+
         List<Role> roleObject = (List<Role>) roleRepository.findAllById(role);
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isPresent()) {

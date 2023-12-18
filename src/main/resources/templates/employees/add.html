@@ -17,6 +17,11 @@
         <p class="error" th:errors="${employee.hours}"></p>
     </div>
     <div class="form-group">
+        <label>Email
+            <input th:field="${employee.eMail}" class="form-control">
+        </label>
+    </div>
+    <div class="form-group">
         <label>Active</label>
         <input type="checkbox"  th:checked="${employee.isActive}" name="Active">
         <label>Training</label>
@@ -27,7 +32,7 @@
         <th:block th:each="role : ${roles}">
             <input type="checkbox" name="role" th:value="${role.id}">
             <label th:text="${role.name}"></label>
-        </th:block>1
+        </th:block>
     </div>
     <div>
         <input type="submit" value="Add" class="btn btn-primary">
