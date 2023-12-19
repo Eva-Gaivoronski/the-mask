@@ -20,6 +20,11 @@
         <label>Email
             <input th:field="${employee.eMail}" class="form-control">
         </label>
+        <p class="error" th:errors="${employee.eMail}"></p>
+        <label>Phone Number
+            <input th:field="${employee.phoneNumber}" class="form-control">
+        </label>
+        <p class="error" th:errors="${employee.phoneNumber}"></p>
     </div>
     <div class="form-group">
         <label>Active</label>
