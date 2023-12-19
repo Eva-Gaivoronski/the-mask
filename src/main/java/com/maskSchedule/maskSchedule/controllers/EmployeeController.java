@@ -93,4 +93,19 @@ public class EmployeeController {
         }
         return "redirect:/employees";
     }
+
+    @GetMapping("view/{employeeId}")
+    public String displayViewEmployee(Model model, @PathVariable int employeeId) {
+
+        Optional<Employee> optEmployee = employeeRepository.findById(employeeId);
+        if (optEmployee.isPresent()) {
+            Employee employee = (Employee) optEmployee.get();
+            model.addAttribute("employee", employee);
+            return "employees/view";
+        } else {
+            return "redirect:../";
+        }
+
+    }
+
 }

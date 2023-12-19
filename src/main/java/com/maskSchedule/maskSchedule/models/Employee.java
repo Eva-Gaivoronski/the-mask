@@ -29,6 +29,7 @@ public class Employee {
     private String eMail;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private List<Role> role = new ArrayList<>();
 
     //Constructors

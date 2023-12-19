@@ -64,4 +64,8 @@ public class Role {
         this.shortHand = name.charAt(0);
         return shortHand;
     }
+
+    public List<Employee> getEmployees() {
+        return employee;
+    }
 }

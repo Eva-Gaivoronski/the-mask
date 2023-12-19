@@ -18,7 +18,9 @@
     </tr>
     </thead>
     <tr th:each="role : ${roles}">
-        <td th:text="${role.name}"></td>
+        <td>
+            <a th:href="@{'/roles/view/' + ${role.id}}" th:text="${role.name}"></a>
+        </td>
         <td th:text="${role.shortHand}"></td>
         <td>
             <a th:href="@{/roles/edit/{id}(id=${role.id})}">Edit</a>

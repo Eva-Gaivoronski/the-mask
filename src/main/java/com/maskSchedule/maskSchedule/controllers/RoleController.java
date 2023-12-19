@@ -70,4 +70,19 @@ public class RoleController {
         }
         return "redirect:/roles";
     }
+
+    @GetMapping("view/{roleId}")
+    public String displayViewRole(Model model, @PathVariable int roleId) {
+
+        Optional<Role> optRole = roleRepository.findById(roleId);
+        if (optRole.isPresent()) {
+            Role role = (Role) optRole.get();
+            model.addAttribute("role", role);
+            return "roles/view";
+        } else {
+            return "redirect:../";
+        }
+
+    }
+
 }
