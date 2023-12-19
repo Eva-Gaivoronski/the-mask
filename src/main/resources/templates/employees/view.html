@@ -12,8 +12,8 @@
     <p th:text="${'Name: ' + employee.name}"></p>
     <p th:text="${'Hours: ' + employee.hours}"></p>
     <p th:text="${'Active: ' + employee.isActive}"></p>
-    <p th:text="${'Email: ' + employee.eMail}"></p>
-    <p th:text="${'Phone Number: ' + employee.phoneNumber}"></p>
+    <p th:text="${'Email: ' + employee.geteMail}"></p>
+    <p th:text="${'Phone Number: ' + employee.getPhoneNumber}"></p>
     <p> Employees:
     <ul>
         <li th:each="role : ${employee.getRole}">

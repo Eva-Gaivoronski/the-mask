@@ -11,14 +11,19 @@
             <input type="hidden" th:value="${employee.id}" name="employeeId">
         </label>
         <label>Name
-            <input type="text" name="name" th:field="${employee.name}" class="form-control">
+            <input  th:field="${employee.name}" class="form-control">
         </label>
         <p class="error" th:errors="${employee.name}"></p>
         <label>E-Mail
-            <input type="email" name="email" th:field="${employee.eMail}" class="form-control">
+            <input  th:field="${employee.eMail}" class="form-control">
         </label>
         <p class="error" th:errors="${employee.eMail}"></p>
+        <label>Phone Number
+            <input  th:field="${employee.phoneNumber}" class="form-control">
+        </label>
+        <p class="error" th:errors="${employee.phoneNumber}"></p>
     </div>
+
     <div class="form-group">
         <label th:for="role">Roles</label>
             <th:block th:each="role : ${roles}">
