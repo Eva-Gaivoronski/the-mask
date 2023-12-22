@@ -29,7 +29,7 @@ public class ShiftController {
 
     @PostMapping("new")
     public String processingCreateShiftForm(@ModelAttribute @Valid Shift newShift,
-                                            Errors errors, Model model, @RequestParam List<Integer> role) {
+                                            Errors errors, Model model, Employee employee, @RequestParam List<Integer> role) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Shift");
             return "shift/new";
