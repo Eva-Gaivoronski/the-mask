@@ -77,7 +77,8 @@ public class EmployeeController {
                                               Model model, @RequestParam List<Integer> role) {
 
         if(errors.hasErrors()){
-            model.addAttribute("title", "Create Employee");
+            model.addAttribute("title", "Edit Employee");
+            model.addAttribute("roles", roleRepository.findAll());
             return "employees/edit";
         }
 
