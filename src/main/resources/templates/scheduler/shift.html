@@ -7,8 +7,14 @@
 <header th:replace="fragments :: header"></header>
 <form method="post">
     <div>
-        <Label>Employee</Label>
-        <input> <!--select?-->
+        <Label>Employee
+        <select th:field="${employee.name}">
+            <option th:each="name : ${names}"
+                    th:value="${name}"
+                    th:display="${employee.name}"
+            ></option>
+        </select>
+        </Label>
         <Label>Day</Label>
         <input> <!--select?-->
         <label>Start Time</label>
