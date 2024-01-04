@@ -8,6 +8,7 @@
 <nav>
     <ul>
         <li><a href="shifts/add">Create Shift</a></li>
+        <li><a href="shifts/send">Send Schedule</a></li>
     </ul>
 </nav>
 <table class="table table-striped">
@@ -21,17 +22,10 @@
         <th>Sat</th>
         <th>Sun</th>
     </tr>
-    <thead>
-    <tr>
-        <th>Employees</th>
-    </tr>
-    </thead>
     <tr th:each="employee : ${employees}">
         <td th:text="${employee.name}"></td>
         <td>
-            <li th:each="shift : ${employee.getShift}">
-                <a th:text="${shift.shiftDay}: ${shift.shiftStart}-${shift.shiftEnd}"></a>
-            </li>
+            <!-- some sort of table of if/unless statements-->
         </td>
     </tr>
 </table>

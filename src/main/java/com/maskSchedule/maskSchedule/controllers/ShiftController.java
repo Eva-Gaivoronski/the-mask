@@ -31,6 +31,7 @@ public class ShiftController {
     @GetMapping
     public String displayShiftIndex(Model model){
         model.addAttribute("Title","Shift Main");
+        model.addAttribute("Employees",employeeRepository.findAll());
         model.addAttribute("Shifts",shiftRepository.findAll());
         return "shifts/index";
     }
