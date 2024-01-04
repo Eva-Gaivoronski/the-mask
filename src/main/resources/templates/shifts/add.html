@@ -8,7 +8,8 @@
 <form method="post">
     <div class="form-group">
         <Label>Employee
-        <select th:field="${shift.employee.name}">
+        <select th:field="${shift.employee.name}"> <!-- value may need to be changed-->
+            <option value="0">Choose Employee</option>
             <option th:each="name : ${names}"
                     th:value="${name}"
                     th:display="${employee.name}"
@@ -19,7 +20,16 @@
         </div>
     <div class="form-group">
         <Label>Day
-            <input>
+            <select th:field="${shift.shiftDay}">
+                <option value="0">Choose Day</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wedday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="7">Sunday</option>
+            </select>
         </Label>
         <p class="error" th:errors="${shift.shiftDay}"</p>
     </div>
@@ -38,7 +48,8 @@
 
     <div class="form-group">
         <label>Role
-            <select th:field="${shift.role.name}">
+            <select th:field="${shift.role.name}"> <!-- value may need to be changed-->
+                <option value="0">Choose Role</option>
                 <option th:each="name :${names}"
                         th:value="${name}"
                         th:display="${role.name}"

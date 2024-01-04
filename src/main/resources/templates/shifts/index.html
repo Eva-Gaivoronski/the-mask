@@ -10,5 +10,31 @@
         <li><a href="shifts/add">Create Shift</a></li>
     </ul>
 </nav>
+<table class="table table-striped">
+    <tr>
+        <th>Employee</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+    </tr>
+    <thead>
+    <tr>
+        <th>Employees</th>
+    </tr>
+    </thead>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.name}"></td>
+        <td>
+            <li th:each="shift : ${employee.getShift}">
+                <a th:text="${shift.shiftDay}: ${shift.shiftStart}-${shift.shiftEnd}"></a>
+            </li>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>

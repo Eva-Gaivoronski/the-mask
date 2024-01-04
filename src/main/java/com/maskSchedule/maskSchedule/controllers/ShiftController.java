@@ -13,6 +13,7 @@ package com.maskSchedule.maskSchedule.controllers;
         import org.springframework.validation.Errors;
         import org.springframework.web.bind.annotation.*;
 
+        import java.util.ArrayList;
         import java.util.List;
 
 @Controller
@@ -50,6 +51,16 @@ public class ShiftController {
             model.addAttribute("title", "Create Shift");
             return "add";
         }
+
+        List<String> daysOfWeek = new ArrayList<String>();
+        daysOfWeek.add("Monday");
+        daysOfWeek.add("Tuesday");
+        daysOfWeek.add("Wednesday");
+        daysOfWeek.add("Thursday");
+        daysOfWeek.add("Friday");
+        daysOfWeek.add("Saturday");
+        daysOfWeek.add("Sunday");
+        model.addAttribute("daysOfWeek", daysOfWeek);
 
         Employee employeeObject = (Employee) employeeRepository.findAll();
         newShift.setEmployee(employeeObject);
