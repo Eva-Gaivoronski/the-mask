@@ -37,7 +37,7 @@ public class Shift {
     }
 
 
-    //Hash mapping - need help
+    //Hash mapping
 
     @Override
     public boolean equals(Object o) {

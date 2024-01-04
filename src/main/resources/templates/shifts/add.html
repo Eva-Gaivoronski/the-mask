@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<h1></h1>
+<header th:replace="fragments :: header"></header>
+<form method="post">
+    <div class="form-group">
+        <Label>Employee
+        <select th:field="${shift.employee.name}">
+            <option th:each="name : ${names}"
+                    th:value="${name}"
+                    th:display="${employee.name}"
+            ></option>
+        </select>
+            <p class="error" th:errors="${shift.employee.name}"></p>
+        </Label>
+        </div>
+    <div class="form-group">
+        <Label>Day
+            <input>
+        </Label>
+        <p class="error" th:errors="${shift.shiftDay}"</p>
+    </div>
+    <div class="form-group">
+        <label>Start Time
+            <input type="time" th:field="${shift.shiftStart}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${shift.shiftStart}"></p>
+    </div>
+    <div class="form-group">
+        <label>End Time
+            <input type="time" th:field="${shift.shiftEnd}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${shift.shiftEnd}"></p>
+    </div>
+
+    <div class="form-group">
+        <label>Role
+            <select th:field="${shift.role.name}">
+                <option th:each="name :${names}"
+                        th:value="${name}"
+                        th:display="${role.name}"
+                ></option>
+            </select>
+            <p class="error" th:errors="${shift.role.name}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>

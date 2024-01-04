@@ -1,5 +1,6 @@
 package com.maskSchedule.maskSchedule.controllers;
 
+        import com.maskSchedule.maskSchedule.data.EmployeeRepository;
         import com.maskSchedule.maskSchedule.data.RoleRepository;
         import com.maskSchedule.maskSchedule.data.ShiftRepository;
         import com.maskSchedule.maskSchedule.models.Employee;
@@ -10,15 +11,12 @@ package com.maskSchedule.maskSchedule.controllers;
         import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
         import org.springframework.validation.Errors;
-        import org.springframework.web.bind.annotation.ModelAttribute;
-        import org.springframework.web.bind.annotation.PostMapping;
-        import org.springframework.web.bind.annotation.RequestMapping;
-        import org.springframework.web.bind.annotation.RequestParam;
+        import org.springframework.web.bind.annotation.*;
 
         import java.util.List;
 
 @Controller
-@RequestMapping("/shift")
+@RequestMapping("shifts")
 public class ShiftController {
     @Autowired
     private ShiftRepository shiftRepository;
@@ -26,22 +24,43 @@ public class ShiftController {
     private UserController userController;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
-    @PostMapping("new")
+    @GetMapping
+    public String displayShiftIndex(Model model){
+        model.addAttribute("Title","Shift Main");
+        model.addAttribute("Shifts",shiftRepository.findAll());
+        return "shifts/index";
+    }
+
+    @GetMapping("add")
+    public String displayAddShift(Model model) {
+        model.addAttribute("title", "Create Shift");
+        model.addAttribute(new Shift());
+        model.addAttribute("employee", employeeRepository.findAll());
+        model.addAttribute("role", roleRepository.findAll());
+        return "shifts/add";
+    }
+
+    @PostMapping("add")
     public String processingCreateShiftForm(@ModelAttribute @Valid Shift newShift,
-                                            Errors errors, Model model, @Valid Employee employee, @RequestParam List<Integer> role) {
+                                            Errors errors, Model model, @RequestParam Employee employee, @RequestParam Role role) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Shift");
-            return "/schedule";
+            return "add";
         }
 
+        Employee employeeObject = (Employee) employeeRepository.findAll();
+        newShift.setEmployee(employeeObject);
+        model.addAttribute("employee", employeeObject);
 
-//        List<Role> roleObject = (List<Role>) roleRepository.findAllById(role);
-//        newShift.setRole(roleObject);
-//        model.addAttribute("role", roleObject);
+        Role roleObject = (Role) roleRepository.findAll();
+        newShift.setRole(roleObject);
+        model.addAttribute("role", roleObject);
 
         shiftRepository.save(newShift);
-        return "redirect:/new";
+        return "redirect:/shifts";
     }
 
 }
