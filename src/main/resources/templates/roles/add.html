@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<h1></h1>
+<header th:replace="~{fragments :: header}"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${role.name}" class="form-control">
+        </label>
+        <p class="error" th:errors="${role.name}"></p>
+    </div>
+    <div>
+        <input type="submit" value="Add" >
+    </div>
+</form>
+
+
+</body>
+</html>

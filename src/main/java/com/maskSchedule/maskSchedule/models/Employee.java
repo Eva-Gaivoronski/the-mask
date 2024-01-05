@@ -28,8 +28,8 @@ public class Employee {
     @Email
     private String eMail;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private List<Role> role = new ArrayList<>();
 
     //Constructors
@@ -100,7 +100,7 @@ public class Employee {
         return role;
     }
 
-    public void setRole(List<Role> workStation) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 

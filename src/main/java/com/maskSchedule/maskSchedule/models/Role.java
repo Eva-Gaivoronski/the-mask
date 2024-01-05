@@ -1,13 +1,12 @@
 package com.maskSchedule.maskSchedule.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Entity
 public class Role {
@@ -23,8 +22,8 @@ public class Role {
 //    @NotBlank(message = "ShortHand is required!")
 //    @Size(min = 1, max = 3, message = "ShortHand must be between 1 and 3 characters!")
     private char shortHand;
-    @ManyToOne
-    private Employee employee;
+    @ManyToMany(mappedBy = "role")
+    private final List<Employee> employee = new ArrayList<>();
 
     // Constructor
     public Role () {}
@@ -64,5 +63,9 @@ public class Role {
         this.name = name.toUpperCase();
         this.shortHand = name.charAt(0);
         return shortHand;
+    }
+
+    public List<Employee> getEmployees() {
+        return employee;
     }
 }
