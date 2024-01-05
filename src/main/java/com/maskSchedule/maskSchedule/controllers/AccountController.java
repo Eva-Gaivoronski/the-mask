@@ -28,7 +28,6 @@ public class AccountController {
 
     @GetMapping
     public String displayAccounts (Model model) {
-        model.addAttribute("title", "All Accounts");
         model.addAttribute("accounts", accountRepository.findAll());
         return "accounts/index";
     }
@@ -69,11 +68,11 @@ public class AccountController {
 
     @GetMapping("view/{accountId}")
     public String displayAccount(Model model, @PathVariable int accountId) {
-        Optional optAccount = accountRepository.findById(accountId);
-        if (!optAccount.isEmpty()) {
+        Optional <Account> optAccount = accountRepository.findById(accountId);
+        if (optAccount.isPresent()) {
             Account account = (Account) optAccount.get();
             model.addAttribute("account", account);
-            return "view";
+            return "accounts/view";
         } else {
             return "redirect:/";
         }
