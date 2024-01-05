@@ -12,6 +12,9 @@
     </ul>
 </nav>
 <table class="table table-striped">
+    <thead>
+    Schedule
+    </thead>
     <tr>
         <th>Employee</th>
         <th>Mon</th>
@@ -23,10 +26,8 @@
         <th>Sun</th>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td th:text="${employee.name}"></td>
-        <td>
-            <!-- some sort of table of if/unless statements-->
-        </td>
+            <tr th:each="shift : ${shifts}">
+    <td th:text="${shift.shiftDay}: ${shift.shiftStart} - ${shift.shiftEnd}"></td>
     </tr>
 </table>
 

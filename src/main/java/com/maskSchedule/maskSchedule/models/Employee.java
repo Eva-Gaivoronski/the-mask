@@ -32,6 +32,10 @@ public class Employee {
     @JoinColumn(name = "role_id")
     private List<Role> role = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shift_id")
+    private List<Shift> shifts = new ArrayList<>();
+
     //Constructors
 
     public Employee() {}
@@ -118,5 +122,13 @@ public class Employee {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public List<Shift> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(List<Shift> shifts) {
+        this.shifts = shifts;
     }
 }
