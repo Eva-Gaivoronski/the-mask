@@ -13,21 +13,21 @@
 </nav>
 <table class="table table-striped">
     <thead>
-    Schedule
+    <tr>
+        <th>Shifts</th>
+    </tr>
     </thead>
     <tr>
         <th>Employee</th>
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th>Sat</th>
-        <th>Sun</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
     </tr>
-    <tr th:each="employee : ${employees}">
-            <tr th:each="shift : ${shifts}">
-    <td th:text="${shift.shiftDay}: ${shift.shiftStart} - ${shift.shiftEnd}"></td>
+    <tr th:each="shift : ${shifts}">
+        <td th:text="${}"></td>
+        <td th:text="${shift.shiftDay}"></td>
+        <td th:text="${shift.shiftStart}"></td>
+        <td th:text="${shift.shiftEnd}"></td>
     </tr>
 </table>
 
