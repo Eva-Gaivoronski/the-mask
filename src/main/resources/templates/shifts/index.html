@@ -22,12 +22,15 @@
         <th>Day</th>
         <th>Start Time</th>
         <th>End Time</th>
+        <th>Role</th>
+
     </tr>
     <tr th:each="shift : ${shifts}">
-        <td th:text="${}"></td>
+        <td th:text="${shift.employee.name}"></td>
         <td th:text="${shift.shiftDay}"></td>
         <td th:text="${shift.shiftStart}"></td>
         <td th:text="${shift.shiftEnd}"></td>
+        <td th:text="${shift.role}"></td>
     </tr>
 </table>
 

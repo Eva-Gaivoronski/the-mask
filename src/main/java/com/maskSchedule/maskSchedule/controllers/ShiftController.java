@@ -30,9 +30,9 @@ public class ShiftController {
 
     @GetMapping
     public String displayShiftIndex(Model model){
-        model.addAttribute("Title","Shift Main");
-        model.addAttribute("Employees",employeeRepository.findAll());
-        model.addAttribute("Shifts",shiftRepository.findAll());
+        model.addAttribute("title","Shift Main");
+        model.addAttribute("employees",employeeRepository.findAll());
+        model.addAttribute("shifts",shiftRepository.findAll());
         return "shifts/index";
     }
 
@@ -47,13 +47,13 @@ public class ShiftController {
 
     @PostMapping("add")
     public String processingCreateShiftForm(@ModelAttribute @Valid Shift newShift,
-                                            Errors errors, Model model, @RequestParam Employee employee, @RequestParam Role role) {
+                                            Errors errors, Model model, @RequestParam Employee employee, Role role) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Shift");
             return "add";
         }
 
-        List<String> daysOfWeek = new ArrayList<String>();
+        List<String> daysOfWeek = new ArrayList<>();
         daysOfWeek.add("Monday");
         daysOfWeek.add("Tuesday");
         daysOfWeek.add("Wednesday");
@@ -63,12 +63,14 @@ public class ShiftController {
         daysOfWeek.add("Sunday");
         model.addAttribute("daysOfWeek", daysOfWeek);
 
-        Employee employeeObject = (Employee) employeeRepository.findAll();
-        newShift.setEmployee(employeeObject);
+        List<Employee> employeeObject = (List<Employee>) employeeRepository.findAll();
+//        Employee employeeObject = (Employee) employeeRepository.findAll();
+//        newShift.setEmployee(employeeObject);
         model.addAttribute("employee", employeeObject);
 
-        Role roleObject = (Role) roleRepository.findAll();
-        newShift.setRole(roleObject);
+        List<Role> roleObject = (List<Role>) roleRepository.findAll();
+//        Role roleObject = (Role) roleRepository.findAll();
+//        newShift.setRole(roleObject);
         model.addAttribute("role", roleObject);
 
         shiftRepository.save(newShift);
