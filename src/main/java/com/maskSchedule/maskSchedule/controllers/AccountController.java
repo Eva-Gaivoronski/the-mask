@@ -26,34 +26,35 @@ public class AccountController {
     @Autowired
     private ShiftRepository shiftRepository;
 
-    @GetMapping
+    @GetMapping("")
     public String displayAccounts (Model model) {
+       // model.addAttribute("title", "Account");
         model.addAttribute("accounts", accountRepository.findAll());
         return "accounts/index";
     }
 
-    @GetMapping("add")
-    public String displayAddForm (Model model) {
-        model.addAttribute("title", "Add Account");
-        model.addAttribute(new Account());
-        return "accounts/add";
-    }
-
-    @PostMapping("add")
-    public String processAddForm (@ModelAttribute @Valid Account newAccount, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            return "accounts/add";
-        }
-        accountRepository.save(newAccount);
-        return "redirect:/accounts";
-    }
-
-    @GetMapping("delete")
-    public String displayDeleteAccount (Model model) {
-        model.addAttribute("title", "Delete Account");
-        model.addAttribute("accounts", accountRepository.findAll());
-        return "accounts/delete";
-    }
+//    @GetMapping("add")
+//    public String displayAddForm (Model model) {
+//        model.addAttribute("title", "Add Account");
+//        model.addAttribute(new Account());
+//        return "accounts/add";
+//    }
+//
+//    @PostMapping("add")
+//    public String processAddForm (@ModelAttribute @Valid Account newAccount, Errors errors, Model model) {
+//        if (errors.hasErrors()) {
+//            return "accounts/add";
+//        }
+//        accountRepository.save(newAccount);
+//        return "redirect:/accounts";
+//    }
+//
+//    @GetMapping("delete")
+//    public String displayDeleteAccount (Model model) {
+//        model.addAttribute("title", "Delete Account");
+//        model.addAttribute("accounts", accountRepository.findAll());
+//        return "accounts/delete";
+//    }
 
 //    @GetMapping("delete")
 //    public String processDeleteAccount (@RequestParam(required = false) int[] accountIds) {
@@ -66,16 +67,16 @@ public class AccountController {
 //    }
 
 
-    @GetMapping("view/{accountId}")
-    public String displayAccount(Model model, @PathVariable int accountId) {
-        Optional <Account> optAccount = accountRepository.findById(accountId);
-        if (optAccount.isPresent()) {
-            Account account = (Account) optAccount.get();
-            model.addAttribute("account", account);
-            return "accounts/view";
-        } else {
-            return "redirect:/";
-        }
-    }
+//    @GetMapping("edit/{accountId}")
+//    public String displayAccount(Model model, @PathVariable int accountId) {
+//        Optional <Account> optAccount = accountRepository.findById(accountId);
+//        if (optAccount.isPresent()) {
+//            Account account = (Account) optAccount.get();
+//            model.addAttribute("account", account);
+//            return "accounts/edit";
+//        } else {
+//            return "redirect:/";
+//        }
+//    }
 
 }
