@@ -31,8 +31,10 @@
         <th>Friday</th>
         <th>Saturday</th>
     </tr>
-    <tr th:each="week : ${weeks}">
-        <td>1</td>
+    <tr th:each="week : ${month}">
+        <th:block th:each="day: ${week}">
+            <td>1</td>
+        </th:block>
     </tr>
 
 </table>

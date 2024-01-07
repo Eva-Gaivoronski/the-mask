@@ -35,12 +35,19 @@ public class ScheduleController {
 
         ArrayList<ArrayList<Integer>> month = new ArrayList<>();
 
-        ArrayList<Integer> week = null;
         for (int i = 0; i < numWeeks; i++) {
-            week = new ArrayList<>();
+            ArrayList<Integer> week = new ArrayList<>();
+            if (i == 0) {
+                cal.set(cYear, cMonth, 1);
+               int startDay = cal.getFirstDayOfWeek();
+               for (int j = 0; j < startDay; j++) {
+                   week.add(null);
+                }
+            }
 
+            month.add(week);
         }
-        month.add(week);
+
 
 
         return month;
@@ -54,8 +61,9 @@ public class ScheduleController {
 
     @GetMapping("create")
     public String createSchedule(Model model) {
+        ArrayList<ArrayList<Integer>> month = calendarArr();
         model.addAttribute("title", "Create Schedule");
-        model.addAttribute("weeks", cal.getActualMaximum(Calendar.WEEK_OF_MONTH));
+        model.addAttribute("month",month);
         return "schedule/create";
     }
 
