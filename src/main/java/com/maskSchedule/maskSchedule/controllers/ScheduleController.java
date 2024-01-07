@@ -30,10 +30,12 @@ public class ScheduleController {
         int cDay = cal.get(Calendar.DATE);
         int cMonth = cal.get(Calendar.MONTH);
         int cYear = cal.get(Calendar.YEAR);
+        int cDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         int numWeeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
 
         ArrayList<ArrayList<Integer>> month = new ArrayList<>();
+        int day = 1;
 
         for (int i = 0; i < numWeeks; i++) {
             ArrayList<Integer> week = new ArrayList<>();
@@ -42,6 +44,19 @@ public class ScheduleController {
                int startDay = cal.getFirstDayOfWeek();
                for (int j = 0; j < startDay; j++) {
                    week.add(null);
+               }
+               for (int k = startDay; k < 7; k++){
+                   week.add(day);
+                   day++;
+               }
+            }
+            if (i != 0){
+                for (int l = 0; l < 7; l++) {
+                    if (day <= cDays){
+                        week.add(day);
+                        day++;
+                    }
+
                 }
             }
 

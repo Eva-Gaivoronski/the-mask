@@ -6,18 +6,18 @@
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
 <select name="Month" id="Month">
-    <option value="">January</option>
-    <option value="">February</option>
-    <option value="">March</option>
-    <option value="">April</option>
-    <option value="">May</option>
-    <option value="">June</option>
-    <option value="">July</option>
-    <option value="">August</option>
-    <option value="">September</option>
-    <option value="">October</option>
-    <option value="">November</option>
-    <option value="">December</option>
+    <option th:value="0">January</option>
+    <option th:value="1">February</option>
+    <option th:value="2">March</option>
+    <option th:value="3">April</option>
+    <option th:value="4">May</option>
+    <option th:value="5">June</option>
+    <option th:value="6">July</option>
+    <option th:value="7">August</option>
+    <option th:value="8">September</option>
+    <option th:value="9">October</option>
+    <option th:value="10">November</option>
+    <option th:value="11">December</option>
 </select>
 
 <input type="text" id="year"/>
@@ -32,9 +32,9 @@
         <th>Saturday</th>
     </tr>
     <tr th:each="week : ${month}">
-        <th:block th:each="day: ${week}">
-            <td>1</td>
-        </th:block>
+        <td th:each="day: ${week}">
+            <div th:text="${day}"></div>
+        </td>
     </tr>
 
 </table>
