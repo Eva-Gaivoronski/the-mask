@@ -50,28 +50,31 @@ public class ShiftController {
                                             Errors errors, Model model, @RequestParam Employee employee, Role role) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Shift");
-            return "add";
+            return "shifts/add";
         }
 
-        List<String> daysOfWeek = new ArrayList<>();
-        daysOfWeek.add("Monday");
-        daysOfWeek.add("Tuesday");
-        daysOfWeek.add("Wednesday");
-        daysOfWeek.add("Thursday");
-        daysOfWeek.add("Friday");
-        daysOfWeek.add("Saturday");
-        daysOfWeek.add("Sunday");
-        model.addAttribute("daysOfWeek", daysOfWeek);
+//        List<String> daysOfWeek = new ArrayList<>();
+//        daysOfWeek.add("Monday");
+//        daysOfWeek.add("Tuesday");
+//        daysOfWeek.add("Wednesday");
+//        daysOfWeek.add("Thursday");
+//        daysOfWeek.add("Friday");
+//        daysOfWeek.add("Saturday");
+//        daysOfWeek.add("Sunday");
+//        model.addAttribute("daysOfWeek", daysOfWeek);
 
-        List<Employee> employeeObject = (List<Employee>) employeeRepository.findAll();
-//        Employee employeeObject = (Employee) employeeRepository.findAll();
-//        newShift.setEmployee(employeeObject);
-        model.addAttribute("employee", employeeObject);
 
-        List<Role> roleObject = (List<Role>) roleRepository.findAll();
-//        Role roleObject = (Role) roleRepository.findAll();
-//        newShift.setRole(roleObject);
-        model.addAttribute("role", roleObject);
+//
+//        None of this below is likely needed; keeping just in case
+
+//        model.addAttribute("employee", employeeRepository.findAll());
+//        model.addAttribute("role", roleRepository.findAll());
+
+//        List<Employee> employeeObject = (List<Employee>) employeeRepository.findAll();
+//        model.addAttribute("employee", employeeObject);
+//
+//        List<Role> roleObject = (List<Role>) roleRepository.findAll();
+//        model.addAttribute("role", roleObject);
 
         shiftRepository.save(newShift);
         return "redirect:/shifts";

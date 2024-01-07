@@ -25,14 +25,15 @@ public class Shift {
     public Shift () {}
 
 
-    public Shift(Role role, Employee employee, String ShiftDay, LocalTime shiftStart, LocalTime shiftEnd) { // ?????
-        this.role = role;
+    public Shift( Employee employee, String ShiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role) { // ?????
+
         this.employee = employee;
         this.shiftDay = ShiftDay;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
+        this.role = role;
 
-        shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
+        this.shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
 
     }
 
