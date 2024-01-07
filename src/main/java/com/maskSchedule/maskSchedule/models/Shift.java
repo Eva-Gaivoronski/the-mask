@@ -33,7 +33,7 @@ public class Shift {
         this.shiftEnd = shiftEnd;
         this.role = role;
 
-        this.shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
+        this.shiftHours = shiftHours;
 
     }
 
@@ -79,9 +79,7 @@ public class Shift {
         return shiftDay;
     }
 
-    public void setShiftDay(String shiftDay) {
-        shiftDay = shiftDay;
-    }
+    public void setShiftDay(String shiftDay) { this.shiftDay = shiftDay; }
 
     public LocalTime getShiftStart() {
         return shiftStart;
