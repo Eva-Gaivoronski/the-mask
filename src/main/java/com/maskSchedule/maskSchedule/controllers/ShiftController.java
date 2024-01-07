@@ -42,6 +42,15 @@ public class ShiftController {
         model.addAttribute(new Shift());
         model.addAttribute("employee", employeeRepository.findAll());
         model.addAttribute("role", roleRepository.findAll());
+        List<String> daysOfWeek = new ArrayList<>();
+        daysOfWeek.add("Monday");
+        daysOfWeek.add("Tuesday");
+        daysOfWeek.add("Wednesday");
+        daysOfWeek.add("Thursday");
+        daysOfWeek.add("Friday");
+        daysOfWeek.add("Saturday");
+        daysOfWeek.add("Sunday");
+        model.addAttribute("daysOfWeek", daysOfWeek);
         return "shifts/add";
     }
 
@@ -52,18 +61,6 @@ public class ShiftController {
             model.addAttribute("title", "Create Shift");
             return "shifts/add";
         }
-
-//        List<String> daysOfWeek = new ArrayList<>();
-//        daysOfWeek.add("Monday");
-//        daysOfWeek.add("Tuesday");
-//        daysOfWeek.add("Wednesday");
-//        daysOfWeek.add("Thursday");
-//        daysOfWeek.add("Friday");
-//        daysOfWeek.add("Saturday");
-//        daysOfWeek.add("Sunday");
-//        model.addAttribute("daysOfWeek", daysOfWeek);
-
-
 //
 //        None of this below is likely needed; keeping just in case
 
