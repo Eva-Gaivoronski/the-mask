@@ -25,10 +25,10 @@ public class Shift {
     public Shift () {}
 
 
-    public Shift( Employee employee, String ShiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role) { // ?????
+    public Shift( Employee employee, String shiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role) { // ?????
 
         this.employee = employee;
-        this.shiftDay = ShiftDay;
+        this.shiftDay = shiftDay;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
         this.role = role;
