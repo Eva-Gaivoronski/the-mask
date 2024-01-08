@@ -16,6 +16,7 @@ package com.maskSchedule.maskSchedule.controllers;
         import java.time.temporal.ChronoUnit;
         import java.util.ArrayList;
         import java.util.List;
+        import java.util.Optional;
 
 @Controller
 @RequestMapping("shifts")
@@ -76,6 +77,20 @@ public class ShiftController {
 
         shiftRepository.save(newShift);
         return "redirect:/shifts";
+    }
+
+    @GetMapping("view/{shiftId}")
+    public String displayViewShift(Model model, @PathVariable int shiftId) {
+
+        Optional<Shift> optionalShift = shiftRepository.findById(shiftId);
+        if (optionalShift.isPresent()) {
+            Shift shift = (Shift) optionalShift.get();
+            model.addAttribute("shift", shift);
+            return "shifts/view";
+        } else {
+            return "redirect:../";
+        }
+
     }
 
 

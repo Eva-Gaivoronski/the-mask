@@ -25,7 +25,7 @@ public class Shift {
     public Shift () {}
 
 
-    public Shift( Employee employee, String shiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role) { // ?????
+    public Shift( Employee employee, String shiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role, Long shiftHours) { // ?????
 
         this.employee = employee;
         this.shiftDay = shiftDay;
@@ -98,6 +98,7 @@ public class Shift {
     }
 
     public Long getShiftHours() {
+        shiftHours = shiftStart.until(shiftEnd, ChronoUnit.HOURS);
         return shiftHours;
     }
 
