@@ -1,8 +1,7 @@
 package com.maskSchedule.maskSchedule.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,13 @@ public class Week {
     @GeneratedValue
     private int id;
 
+    @NotNull
     private int week;
+    @ManyToOne
+    @JoinColumn(name="month_id")
+    private Month month;
 
+    @OneToMany(mappedBy = "week_id")
     List<Day> days = new ArrayList<>();
 
     public Week () {}

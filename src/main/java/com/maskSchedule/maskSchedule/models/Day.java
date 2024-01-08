@@ -1,8 +1,6 @@
 package com.maskSchedule.maskSchedule.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -11,8 +9,10 @@ public class Day {
     @Id
     @GeneratedValue
     private int id;
-
     private int day;
+    @ManyToOne
+    @JoinColumn(name = "week_id")
+    private Week week;
 
     public Day () {}
 
