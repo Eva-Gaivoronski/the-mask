@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -38,6 +39,11 @@ public class ScheduleController {
         model.addAttribute("title", "Create Schedule");
         model.addAttribute("year", newYear);
         model.addAttribute("month",newYear.getMonth(cal.get(Calendar.MONTH)));
+        return "schedule/create";
+    }
+
+    @PostMapping("create")
+    public String processingCreateSchedule(Model model) {
         return "schedule/create";
     }
 
