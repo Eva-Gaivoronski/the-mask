@@ -24,50 +24,6 @@ public class ScheduleController {
     @Autowired
     private ShiftRepository shiftRepository;
 
-    //Calendar information
-
-//    public ArrayList<ArrayList<Integer>> calendarArr() {
-//        Calendar cal = new GregorianCalendar();
-//        int cDay = cal.get(Calendar.DATE);
-//        int cMonth = cal.get(Calendar.MONTH);
-//        int cYear = cal.get(Calendar.YEAR);
-//        int cDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-//
-//        int numWeeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
-//
-//        ArrayList<ArrayList<Integer>> month = new ArrayList<>();
-//        int day = 1;
-//
-//        for (int i = 0; i < numWeeks; i++) {
-//            ArrayList<Integer> week = new ArrayList<>();
-//            if (i == 0) {
-//                cal.set(cYear, cMonth, 1);
-//               int startDay = cal.getFirstDayOfWeek();
-//               for (int j = 0; j < startDay; j++) {
-//                   week.add(null);
-//               }
-//               for (int k = startDay; k < 7; k++){
-//                   week.add(day);
-//                   day++;
-//               }
-//            }
-//            if (i != 0){
-//                for (int l = 0; l < 7; l++) {
-//                    if (day <= cDays){
-//                        week.add(day);
-//                        day++;
-//                    }
-//
-//                }
-//            }
-//
-//            month.add(week);
-//        }
-//
-//
-//
-//        return month;
-//    }
 
     @GetMapping
     public String displayScheduleIndex(Model model) {
@@ -76,11 +32,11 @@ public class ScheduleController {
     }
 
     @GetMapping("create")
-    public String createSchedule(Model model, Year newYear) {
-//        ArrayList<ArrayList<Integer>> month = calendarArr();
-        newYear = new Year(2024);
+    public String createSchedule(Model model) {
+        Calendar cal = new GregorianCalendar();
+        Year newYear = new Year(cal.get(Calendar.YEAR));
         model.addAttribute("title", "Create Schedule");
-        model.addAttribute("month",newYear.getMonth());
+        model.addAttribute("month",newYear.getMonth(0));
         return "schedule/create";
     }
 

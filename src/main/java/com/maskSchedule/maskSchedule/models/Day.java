@@ -11,7 +11,7 @@ public class Day {
     private int id;
     private int day;
     @ManyToOne
-    @JoinColumn(name = "week_id")
+    @JoinColumn(name = "week")
     private Week week;
 
     public Day () {}
@@ -33,6 +33,12 @@ public class Day {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return ""+day;
+
     }
 
     // getters and setters

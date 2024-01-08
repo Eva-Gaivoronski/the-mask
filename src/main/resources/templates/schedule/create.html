@@ -20,7 +20,10 @@
     <option th:value="11">December</option>
 </select>
 
-<input type="text" id="year"/>
+<input type="text" id="year" th:value="${"/>
+<div>
+    <label th:text="${month.getName()}"></label>
+</div>
 <table class="table table-striped">
     <tr>
         <th>Sunday</th>
@@ -31,8 +34,8 @@
         <th>Friday</th>
         <th>Saturday</th>
     </tr>
-    <tr th:each="week : ${month}">
-        <td th:each="day: ${week}">
+    <tr th:each="week : ${month.getWeeks()}">
+        <td th:each="day: ${week.getDays()}">
             <div th:text="${day}"></div>
         </td>
     </tr>

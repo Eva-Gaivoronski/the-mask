@@ -16,10 +16,10 @@ public class Week {
     @NotNull
     private int week;
     @ManyToOne
-    @JoinColumn(name="month_id")
+    @JoinColumn(name = "month")
     private Month month;
 
-    @OneToMany(mappedBy = "week_id")
+    @OneToMany(mappedBy = "week")
     List<Day> days = new ArrayList<>();
 
     public Week () {}
@@ -66,7 +66,11 @@ public class Week {
         return days.get(dayInt);
     }
 
-    public void addDay(Day day) {
+    public void addDay(int day) {
+        days.add(new Day(day));
+    }
+
+    public void addBlankDay(){
         days.add(new Day());
     }
 }

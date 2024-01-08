@@ -16,9 +16,9 @@ public class Month {
     private int month;
     private String name;
     @ManyToOne
-    @JoinColumn(name = "year_id")
+    @JoinColumn(name = "year")
     private Year year;
-    @OneToMany(mappedBy = "month_id")
+    @OneToMany(mappedBy = "month")
     List<Week> weeks = new ArrayList<>();
 
     public Month () {}
@@ -58,7 +58,7 @@ public class Month {
         this.month = month;
     }
 
-    public List<Week> getWeekList() {
+    public List<Week> getWeeks() {
         return weeks;
     }
 
