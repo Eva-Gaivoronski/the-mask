@@ -6,24 +6,11 @@
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
 <select name="Month" id="Month">
-    <option th:value="0">January</option>
-    <option th:value="1">February</option>
-    <option th:value="2">March</option>
-    <option th:value="3">April</option>
-    <option th:value="4">May</option>
-    <option th:value="5">June</option>
-    <option th:value="6">July</option>
-    <option th:value="7">August</option>
-    <option th:value="8">September</option>
-    <option th:value="9">October</option>
-    <option th:value="10">November</option>
-    <option th:value="11">December</option>
+    <option th:each="month : ${year.getMonths()}" th:value="${month.getMonth()}" th:text="${month.getName()}" onchange="location.reload()"></option>
 </select>
 
-<input type="text" id="year" th:value="${"/>
-<div>
-    <label th:text="${month.getName()}"></label>
-</div>
+<input type="text" id="year" th:value="${year.getYear()}"/>
+<input type="submit" value="Apply Changes">
 <table class="table table-striped">
     <tr>
         <th>Sunday</th>
@@ -37,6 +24,7 @@
     <tr th:each="week : ${month.getWeeks()}">
         <td th:each="day: ${week.getDays()}">
             <div th:text="${day}"></div>
+            <input type="button" value="Add Event"/>
         </td>
     </tr>
 

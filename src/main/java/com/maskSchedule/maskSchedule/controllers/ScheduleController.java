@@ -36,7 +36,8 @@ public class ScheduleController {
         Calendar cal = new GregorianCalendar();
         Year newYear = new Year(cal.get(Calendar.YEAR));
         model.addAttribute("title", "Create Schedule");
-        model.addAttribute("month",newYear.getMonth(0));
+        model.addAttribute("year", newYear);
+        model.addAttribute("month",newYear.getMonth(cal.get(Calendar.MONTH)));
         return "schedule/create";
     }
 

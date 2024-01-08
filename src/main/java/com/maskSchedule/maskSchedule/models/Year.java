@@ -128,7 +128,7 @@ public class Year {
         this.year = year;
     }
 
-    public List<Month> getMonth() {
+    public List<Month> getMonths() {
         return months;
     }
 
