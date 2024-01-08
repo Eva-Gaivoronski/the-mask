@@ -58,7 +58,7 @@ public class Week {
         return days;
     }
 
-    public void addDay(List<Day> day) {
+    public void addDay(Day day) {
         days.add(new Day());
     }
 }

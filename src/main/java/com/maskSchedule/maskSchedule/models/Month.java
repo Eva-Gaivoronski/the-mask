@@ -15,7 +15,7 @@ public class Month {
     private int id;
     private int month;
     private String name;
-    List<Week> week = new ArrayList<>();
+    List<Week> weeks = new ArrayList<>();
 
     public Month () {}
 
@@ -55,11 +55,15 @@ public class Month {
     }
 
     public List<Week> getWeekList() {
-        return week;
+        return weeks;
     }
 
-    public void addWeek(List<Week> week) {
-        week.add(new Week());
+    public Week getWeek(int weekInt) {
+        return weeks.get(weekInt);
+    }
+
+    public void addWeek(Week week) {
+        weeks.add(new Week());
     }
 
     public String getName() {
