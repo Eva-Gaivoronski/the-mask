@@ -58,6 +58,10 @@ public class Week {
         return days;
     }
 
+    public Day getDay(int dayInt){
+        return days.get(dayInt);
+    }
+
     public void addDay(Day day) {
         days.add(new Day());
     }
