@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<h1></h1>
+<header th:replace="fragments :: header"></header>
+<form method="post">
+    <div class="form-group">
+        <Label>Employee
+        <select th:field="${shift.employee}"> <!-- value may need to be changed-->
+            <option value="0">Choose Employee</option>
+            <option th:each="employee : ${employee}"
+                    th:value="${employee.id}"
+                    th:text="${employee.name}"
+            ></option>
+        </select>
+            <p class="error" th:errors="${shift.employee}"></p>
+        </Label>
+        </div>
+    <div class="form-group">
+        <Label>Day
+            <select th:field="${shift.shiftDay}">
+                <option value="0">Day</option>
+                <option th:each="day : ${daysOfWeek}"
+                        th:value="${day}"
+                        th:text="${day}"
+                ></option>
+            </select>
+        </Label>
+        <p class="error" th:errors="${shift.shiftDay}"></p>
+    </div>
+    <div class="form-group">
+        <label>Start Time
+            <input type="time" th:field="${shift.shiftStart}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${shift.shiftStart}"></p>
+    </div>
+    <div class="form-group">
+        <label>End Time
+            <input type="time" th:field="${shift.shiftEnd}" class="form-control"/>
+        </label>
+        <p class="error" th:errors="${shift.shiftEnd}"></p>
+    </div>
+
+    <div class="form-group">
+        <label>Role
+            <select th:field="${shift.role}"> <!-- value may need to be changed-->
+                <option value="0">Choose Role</option>
+                <option th:each="role : ${role}"
+                        th:value="${role.id}"
+                        th:text="${role.name}"
+                ></option>
+            </select>
+            <p class="error" th:errors="${shift.role}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="submit" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>
