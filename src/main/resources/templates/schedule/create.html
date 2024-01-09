@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<h1></h1>
+<header th:replace="~{fragments :: header}"></header>
+<select name="Month" id="Month">
+    <option th:each="month : ${year.getMonths()}" th:value="${month.getMonth()}" th:text="${month.getName()}" onchange="location.reload()"></option>
+</select>
+
+<input type="text" id="year" th:value="${year.getYear()}"/>
+<input type="submit" value="Apply Changes">
+<table class="table table-striped">
+    <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    <tr th:each="week : ${month.getWeeks()}">
+        <td th:each="day: ${week.getDays()}">
+            <div th:text="${day}"></div>
+            <input type="button" value="Add Event"/>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>
