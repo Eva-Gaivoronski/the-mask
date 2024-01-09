@@ -25,19 +25,20 @@ public class Shift {
     public Shift () {}
 
 
-    public Shift(Role role, Employee employee, String ShiftDay, LocalTime shiftStart, LocalTime shiftEnd) { // ?????
-        this.role = role;
+    public Shift( Employee employee, String shiftDay, LocalTime shiftStart, LocalTime shiftEnd, Role role, Long shiftHours) { // ?????
+
         this.employee = employee;
-        this.shiftDay = ShiftDay;
+        this.shiftDay = shiftDay;
         this.shiftStart = shiftStart;
         this.shiftEnd = shiftEnd;
+        this.role = role;
 
-        shiftHours = ChronoUnit.HOURS.between(shiftStart, shiftEnd);
+        this.shiftHours = shiftHours;
 
     }
 
 
-    //Hash mapping - need help
+    //Hash mapping
 
     @Override
     public boolean equals(Object o) {
@@ -78,9 +79,7 @@ public class Shift {
         return shiftDay;
     }
 
-    public void setShiftDay(String shiftDay) {
-        shiftDay = shiftDay;
-    }
+    public void setShiftDay(String shiftDay) { this.shiftDay = shiftDay; }
 
     public LocalTime getShiftStart() {
         return shiftStart;
@@ -99,6 +98,7 @@ public class Shift {
     }
 
     public Long getShiftHours() {
+        shiftHours = shiftStart.until(shiftEnd, ChronoUnit.HOURS);
         return shiftHours;
     }
 

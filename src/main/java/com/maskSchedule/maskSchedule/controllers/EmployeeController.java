@@ -61,9 +61,60 @@ public class EmployeeController {
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isPresent()){
             Employee employee = (Employee) optionalEmployee.get();
+
+            model.addAttribute("title", "Edit Employee");
             model.addAttribute("employee", employee);
+            model.addAttribute("roles", roleRepository.findAll());
+
             return "employees/edit";
         }
         return "employees/edit";
     }
+
+    @PostMapping("edit")
+    public String processingEmployeeEditForm (@ModelAttribute @Valid Employee employee, Errors errors, int employeeId,
+                                              String name, String eMail, String phoneNumber,
+                                              Model model, @RequestParam List<Integer> role) {
+
+        if(errors.hasErrors()){
+            model.addAttribute("title", "Edit Employee");
+            model.addAttribute("roles", roleRepository.findAll());
+            return "employees/edit";
+        }
+
+        List<Role> roleObject = (List<Role>) roleRepository.findAllById(role);
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        if (optionalEmployee.isPresent()) {
+            employee = (Employee) optionalEmployee.get();
+
+
+            model.addAttribute("employee", employee);
+            employee.setRole(roleObject);
+            model.addAttribute("role", roleObject);
+
+            employee.setName(name);
+            employee.seteMail(eMail);
+            employee.setPhoneNumber(phoneNumber);
+
+
+            employeeRepository.save(employee);
+            return "redirect:/employees";
+        }
+        return "redirect:/employees";
+    }
+
+    @GetMapping("view/{employeeId}")
+    public String displayViewEmployee(Model model, @PathVariable int employeeId) {
+
+        Optional<Employee> optEmployee = employeeRepository.findById(employeeId);
+        if (optEmployee.isPresent()) {
+            Employee employee = (Employee) optEmployee.get();
+            model.addAttribute("employee", employee);
+            return "employees/view";
+        } else {
+            return "redirect:../";
+        }
+
+    }
+
 }

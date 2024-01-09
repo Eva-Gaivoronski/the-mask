@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1>Account</h1>
+<header th:replace="fragments :: header"></header>
+<nav>
+    <ul>
+        <li><a href="accounts/add">Add Account</a></li>
+        <li><a href="accounts/dayoff">Take Time Off</a></li>
+        <li><a href="accounts/changeschedule">Change Schedule</a></li>
+    </ul>
+</nav>
+<table class="table table-striped">
+    <tr>
+        <th>Employee</th>
+        <th>Shift</th>
+    </tr>
+    <thead>
+    <tr>
+        <th>Schedule</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:each="employee : ${employees}" th:text="${employee.name}"></td>
+<!--        <td th:each="shift : ${shifts}" th:text="$"></td>-->
+    </tr>
+</table>
+
+<!--<a th:href="@{accounts/edit/{id}(id={account.id)}">Edit</a>-->
+
+</body>
+</html>

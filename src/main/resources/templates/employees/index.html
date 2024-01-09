@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
 </head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
@@ -22,12 +22,14 @@
     </tr>
     </thead>
     <tr th:each="employee : ${employees}">
-        <td th:text="${employee.name}"></td>
+        <td>
+            <a th:href="@{'/employees/view/' + ${employee.id}}" th:text="${employee.name}"></a>
+        </td>
         <td th:text="${employee.isActive}"></td>
         <td th:text="${employee.isTraining}"></td>
         <td>
             <li th:each="role : ${employee.getRole}">
-                <a th:text="${role.name}"></a>
+                <a th:href="@{'/roles/view/' + ${role.id}}" th:text="${role.name}"></a>
             </li>
         </td>
         <td>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<h1></h1>
+<header th:replace="fragments :: header"></header>
+<nav>
+    <ul>
+        <li><a href="shifts/add">Create Shift</a></li>
+        <li><a href="shifts/send">Send Schedule</a></li>
+    </ul>
+</nav>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Shifts</th>
+    </tr>
+    </thead>
+    <tr>
+        <th>Employee</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Role</th>
+
+    </tr>
+    <tr th:each="shift : ${shifts}">
+        <td th:text="${shift.employee.name}"></td>
+        <td th:text="${shift.shiftDay}"></td>
+        <td th:text="${shift.shiftStart}"></td>
+        <td th:text="${shift.shiftEnd}"></td>
+        <td th:text="${shift.role.name}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
