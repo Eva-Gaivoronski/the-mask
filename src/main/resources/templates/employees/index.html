@@ -3,13 +3,12 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-<h1></h1>
-<header th:replace="fragments :: header"></header>
-<nav>
-    <ul>
-        <li><a href="employees/add">Add Employee</a></li>
-    </ul>
-</nav>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="employees/add">Add Employee</a>
+    </div>
+</div>
 <table class="table table-striped">
     <tr>
         <th>Employee</th>
