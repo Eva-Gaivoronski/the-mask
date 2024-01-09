@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
 </head>
 <body>
 <h1></h1>
-<header th:replace="fragments :: header"></header>
-<form method="post">
-    <div class="form-group">
-        <Label>Employee
-        <select th:field="${shift.employee}"> <!-- value may need to be changed-->
-            <option value="0">Choose Employee</option>
-            <option th:each="employee : ${employee}"
-                    th:value="${employee.id}"
-                    th:text="${employee.name}"
-            ></option>
-        </select>
-            <p class="error" th:errors="${shift.employee}"></p>
-        </Label>
-        </div>
+<header th:replace="~{fragments :: header}"></header>
+<h2 th:text="${shift.employee.name}"></h2>
+<div class="shift-listing">
+    <p>Current Shift:</p>
+    <p th:text="${'Day: ' + shift.shiftDay}"></p>
+    <p th:text="${'Shift Start: ' + shift.shiftStart}"></p>
+    <p th:text="${'Shift End: ' + shift.shiftEnd}"></p>
+    <p th:text="${'Hours: ' + shift.getShiftHours()}"></p>
+    <p th:if="${shift.role != null}" th:text="${'Role: ' + shift.role.name}"></p>
+</div>
+<form method="post" action="/shifts/edit">
     <div class="form-group">
         <Label>Day
             <select th:field="${shift.shiftDay}">
-                <option value="0">Day</option>
                 <option th:each="day : ${daysOfWeek}"
                         th:value="${day}"
                         th:text="${day}"
@@ -46,7 +42,6 @@
     <div class="form-group">
         <label>Role
             <select th:field="${shift.role}">
-                <option value="0">Choose Role</option>
                 <option th:each="role : ${role}"
                         th:value="${role.id}"
                         th:text="${role.name}"
@@ -58,6 +53,8 @@
     <div class="form-group">
         <input type="submit" value="submit" class="btn btn-success">
     </div>
+
+
 </form>
 
 </body>
