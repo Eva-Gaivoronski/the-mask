@@ -3,6 +3,7 @@ package com.maskSchedule.maskSchedule.controllers;
 import com.maskSchedule.maskSchedule.data.EmployeeRepository;
 import com.maskSchedule.maskSchedule.data.RoleRepository;
 import com.maskSchedule.maskSchedule.data.ShiftRepository;
+import com.maskSchedule.maskSchedule.data.YearRepository;
 import com.maskSchedule.maskSchedule.models.Year;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class ScheduleController {
     private RoleRepository roleRepository;
     @Autowired
     private ShiftRepository shiftRepository;
+    @Autowired
+    private YearRepository yearRepository;
 
 
     @GetMapping(value = "")
