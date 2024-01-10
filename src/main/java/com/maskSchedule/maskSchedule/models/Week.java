@@ -19,7 +19,7 @@ public class Week {
     @JoinColumn(name = "month")
     private Month month;
 
-    @OneToMany(mappedBy = "week")
+    @OneToMany(mappedBy = "week", cascade = CascadeType.ALL)
     List<Day> days = new ArrayList<>();
 
     public Week () {}

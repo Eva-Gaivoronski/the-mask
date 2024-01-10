@@ -1,9 +1,6 @@
 package com.maskSchedule.maskSchedule.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.*;
@@ -15,7 +12,7 @@ public class Year {
     private int id;
     @NotNull
     private int year;
-    @OneToMany(mappedBy = "year")
+    @OneToMany(mappedBy = "year", cascade = CascadeType.ALL)
     List<Month> months = new ArrayList<>();
 
     // building the year
@@ -46,7 +43,7 @@ public class Year {
             cal.set(year,monthInt, 1);
 
             //get the day the week starts on and number of weeks
-            int startDay = cal.getFirstDayOfWeek();
+            int startDay = cal.get(Calendar.DAY_OF_WEEK);
             int numberOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
             int numberOfWeeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
 
@@ -59,7 +56,6 @@ public class Year {
 
                 //check first week to set start day of the month
                 if (weekInt == 0) {
-
                     //add empty days until the start of the month for the first week
                     for (int blankDay = 0; blankDay < startDay; blankDay++) {
                         months.get(monthInt).getWeek(weekInt).addBlankDay();

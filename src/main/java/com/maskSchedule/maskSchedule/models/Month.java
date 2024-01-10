@@ -18,7 +18,7 @@ public class Month {
     @ManyToOne
     @JoinColumn(name = "year")
     private Year year;
-    @OneToMany(mappedBy = "month")
+    @OneToMany(mappedBy = "month", cascade = CascadeType.ALL)
     List<Week> weeks = new ArrayList<>();
 
     public Month () {}

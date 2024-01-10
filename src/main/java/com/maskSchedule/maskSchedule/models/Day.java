@@ -37,7 +37,10 @@ public class Day {
 
     @Override
     public String toString() {
-        return ""+day;
+        if (day == 0){
+            return "";
+        }
+        return ""+day;//check value for day to print a blank
 
     }
 
