@@ -2,15 +2,14 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<h1></h1>
-<header th:replace="fragments :: header"></header>
-<nav>
-    <ul>
-        <li><a href="accounts/add">Add Account</a></li>
-        <li><a href="accounts/dayoff">Take Time Off</a></li>
-        <li><a href="accounts/changeschedule">Change Schedule</a></li>
-    </ul>
-</nav>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="accounts/add">Add Account</a>
+        <a class="navlink" href="accounts/dayoff">Take Time Off</a>
+        <a class="navlink" href="accounts/changeschedule">Change Schedule</a>
+    </div>
+</div>
 <table class="table table-striped">
     <tr>
         <th>Employee</th>
