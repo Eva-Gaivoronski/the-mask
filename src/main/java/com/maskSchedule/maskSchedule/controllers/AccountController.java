@@ -4,6 +4,7 @@ import com.maskSchedule.maskSchedule.data.AccountRepository;
 import com.maskSchedule.maskSchedule.data.EmployeeRepository;
 import com.maskSchedule.maskSchedule.data.ShiftRepository;
 import com.maskSchedule.maskSchedule.models.Account;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +28,10 @@ public class AccountController {
     private ShiftRepository shiftRepository;
 
     @GetMapping("")
-    public String displayAccounts (Model model) {
+    public String displayAccounts (Model model, HttpSession session) {
        // model.addAttribute("title", "Account");
         model.addAttribute("accounts", accountRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "accounts/index";
     }
 
@@ -50,9 +52,10 @@ public class AccountController {
     }
 
     @GetMapping("delete")
-    public String displayDeleteAccount (Model model) {
+    public String displayDeleteAccount (Model model, HttpSession session) {
         model.addAttribute("title", "Delete Account");
         model.addAttribute("accounts", accountRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "accounts/delete";
     }
 
@@ -68,11 +71,12 @@ public class AccountController {
 
 
     @GetMapping("edit/{accountId}")
-    public String displayAccount(Model model, @PathVariable int accountId) {
+    public String displayAccount(Model model, @PathVariable int accountId, HttpSession session) {
         Optional <Account> optAccount = accountRepository.findById(accountId);
         if (optAccount.isPresent()) {
             Account account = (Account) optAccount.get();
             model.addAttribute("account", account);
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             return "accounts/edit";
         } else {
             return "redirect:/";
