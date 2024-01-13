@@ -3,6 +3,7 @@ package com.maskSchedule.maskSchedule.controllers;
 import com.maskSchedule.maskSchedule.data.RoleRepository;
 import com.maskSchedule.maskSchedule.models.Employee;
 import com.maskSchedule.maskSchedule.models.Role;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +21,17 @@ public class RoleController {
     private RoleRepository roleRepository;
 
     @GetMapping
-    public String displayRoleIndex(Model model) {
+    public String displayRoleIndex(Model model, HttpSession session) {
         model.addAttribute("title", "Roles");
         model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "roles/index";
     }
 
     @GetMapping("add")
-    public String displayAddRole(Model model) {
+    public String displayAddRole(Model model, HttpSession session) {
         model.addAttribute("title", "Create Role");
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         model.addAttribute(new Role());
 
         return "roles/add";
@@ -36,9 +39,11 @@ public class RoleController {
 
     @PostMapping("add")
     public String processingAddRoleForm(@ModelAttribute @Valid Role newRole,
-                                        Errors errors, Model model) {
+                                        Errors errors, Model model,
+                                        HttpSession session) {
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Role");
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             return "roles/add";
         }
         System.out.println(newRole);

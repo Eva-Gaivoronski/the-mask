@@ -6,6 +6,7 @@ package com.maskSchedule.maskSchedule.controllers;
         import com.maskSchedule.maskSchedule.models.Employee;
         import com.maskSchedule.maskSchedule.models.Role;
         import com.maskSchedule.maskSchedule.models.Shift;
+        import jakarta.servlet.http.HttpSession;
         import jakarta.validation.Valid;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
@@ -31,19 +32,21 @@ public class ShiftController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping
-    public String displayShiftIndex(Model model){
+    public String displayShiftIndex(Model model, HttpSession session){
         model.addAttribute("title","Shift Main");
         model.addAttribute("employees",employeeRepository.findAll());
         model.addAttribute("shifts",shiftRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "shifts/index";
     }
 
     @GetMapping("add")
-    public String displayAddShift(Model model) {
+    public String displayAddShift(Model model, HttpSession session) {
         model.addAttribute("title", "Create Shift");
         model.addAttribute(new Shift());
         model.addAttribute("employee", employeeRepository.findAll());
         model.addAttribute("role", roleRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         List<String> daysOfWeek = new ArrayList<>();
         daysOfWeek.add("Monday");
         daysOfWeek.add("Tuesday");
@@ -80,12 +83,13 @@ public class ShiftController {
     }
 
     @GetMapping("view/{shiftId}")
-    public String displayViewShift(Model model, @PathVariable int shiftId) {
+    public String displayViewShift(Model model, @PathVariable int shiftId, HttpSession session) {
 
         Optional<Shift> optionalShift = shiftRepository.findById(shiftId);
         if (optionalShift.isPresent()) {
             Shift shift = (Shift) optionalShift.get();
             model.addAttribute("shift", shift);
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             return "shifts/view";
         } else {
             return "redirect:../";

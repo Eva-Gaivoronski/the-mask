@@ -4,6 +4,7 @@ import com.maskSchedule.maskSchedule.data.EmployeeRepository;
 import com.maskSchedule.maskSchedule.data.RoleRepository;
 import com.maskSchedule.maskSchedule.data.ShiftRepository;
 import com.maskSchedule.maskSchedule.models.Year;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,18 +28,20 @@ public class ScheduleController {
 
 
     @GetMapping
-    public String displayScheduleIndex(Model model) {
+    public String displayScheduleIndex(Model model, HttpSession session) {
        model.addAttribute("title", "Schedule Main");
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "schedule/index";
     }
 
     @GetMapping("create")
-    public String createSchedule(Model model) {
+    public String createSchedule(Model model, HttpSession session) {
         Calendar cal = new GregorianCalendar();
         Year newYear = new Year(cal.get(Calendar.YEAR));
         model.addAttribute("title", "Create Schedule");
         model.addAttribute("year", newYear);
         model.addAttribute("month",newYear.getMonth(cal.get(Calendar.MONTH)));
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "schedule/create";
     }
 
