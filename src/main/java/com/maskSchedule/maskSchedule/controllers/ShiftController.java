@@ -109,7 +109,7 @@ public class ShiftController {
     }
 
     @PostMapping("edit")
-    public String processingShiftEditForm (@ModelAttribute @Valid Shift shift, Errors errors, int shiftId,
+    public String processingShiftEditForm (@ModelAttribute @Valid Shift shift, Errors errors, @PathVariable int shiftId,
                                            LocalTime shiftStart, LocalTime shiftEnd, String shiftDay, Role role,
                                            Model model) {
 
