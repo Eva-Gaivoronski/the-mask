@@ -5,12 +5,18 @@
 <body>
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
-<select name="Month" id="Month">
-    <option th:each="month : ${year.getMonths()}" th:value="${month.getMonth()}" th:text="${month.getName()}" onchange="location.reload()"></option>
+<form th:action="@{/schedule/results}" method="post">
+<select name="selectedMonth" id="selectedMonth" th:selected="selected">
+    <option th:each="month : ${year.months}" th:value="${month.month}"
+            th:selected="${month.month} == ${selectedMonth}" th:text="${month.name}"></option>
 </select>
+    <input type="text" id="year" th:value="${year.getYear()}"/>
+    <input type="submit" value="Apply Changes">
 
-<input type="text" id="year" th:value="${year.getYear()}"/>
-<input type="submit" value="Apply Changes">
+</form>
+<hr />
+
+
 <table class="table table-striped">
     <tr>
         <th>Sunday</th>
@@ -21,10 +27,10 @@
         <th>Friday</th>
         <th>Saturday</th>
     </tr>
-    <tr th:each="week : ${month.getWeeks()}">
-        <td th:each="day: ${week.getDays()}">
+    <tr th:each="week : ${year.months[selectedMonth].weeks}">
+        <td th:each="day: ${week.days}">
             <div th:text="${day}"></div>
-            <input type="button" value="Add Event"/>
+            <input type="button" th:if="0 != ${day.getDay()}" onclick="openForm()" value="Add Event"/>
         </td>
     </tr>
 
