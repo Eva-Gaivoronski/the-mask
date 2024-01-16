@@ -12,7 +12,7 @@
     <p th:text="${'Shift Start: ' + shift.shiftStart}"></p>
     <p th:text="${'Shift End: ' + shift.shiftEnd}"></p>
     <p th:text="${'Hours: ' + shift.getShiftHours()}"></p>
-    <p th:if="${shift.role != null}" th:text="${shift.role.name}"></p>
+    <p th:if="${shift.role != null}" th:text="${'Role: ' + shift.role.name}"></p>
 </div>
 
 
