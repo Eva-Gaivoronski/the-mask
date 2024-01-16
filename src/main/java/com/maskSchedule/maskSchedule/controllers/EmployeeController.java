@@ -4,6 +4,7 @@ import com.maskSchedule.maskSchedule.data.EmployeeRepository;
 import com.maskSchedule.maskSchedule.data.RoleRepository;
 import com.maskSchedule.maskSchedule.models.Employee;
 import com.maskSchedule.maskSchedule.models.Role;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +25,18 @@ public class EmployeeController {
     private RoleRepository roleRepository;
 
     @GetMapping
-    public String displayEmployeeIndex(Model model) {
+    public String displayEmployeeIndex(Model model, HttpSession session) {
         model.addAttribute("title", "Employee Main");
         model.addAttribute("employees", employeeRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "employees/index";
     }
 
     @GetMapping("add")
-    public String displayAddEmployee(Model model) {
+    public String displayAddEmployee(Model model, HttpSession session) {
         model.addAttribute("title", "Create Employee");
         model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         model.addAttribute(new Employee());
 
         return "employees/add";
@@ -41,9 +44,11 @@ public class EmployeeController {
 
     @PostMapping("add")
     public String processingAddEmployeeForm(@ModelAttribute @Valid Employee newEmployee,
-                                            Errors errors, Model model, @RequestParam List<Integer> role) {
+                                            Errors errors, Model model, @RequestParam List<Integer> role,
+                                            HttpSession session) {
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Employee");
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             return "employees/add";
         }
 

@@ -10,33 +10,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;400;700&family=Assistant:wght@400;700&display=swap" rel="stylesheet">
 </head>
-    <body>
-        <header th:fragment="header">
-            <div id="mag"><b>Mask</b> Schedule</div>
-            <div class="nav">
-                <span id="admin-portal" class="bold"><a href="/">Home page</a></span> | &nbsp;
-                <th:block th:unless="${loggedIn}">
-                    <a class="navlink" href="/login">Log In</a>
-                    <a class="navlink" href="/register">Register</a>
-                </th:block>
-                <th:block th:if="${loggedIn}">
-                    <a class="navlink" href="/employees">employees</a>
-                    <a class="navlink" href="/logout">Log Out</a>
-                </th:block>
-            </div>
-        </header>
-
-    </body>
-<nav th:fragment="header" >
-    <h1 th:text="${title}">Page Name</h1>
-    <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/employees">Employee</a></li>
-        <li class="nav-item"><a class="nav-link" href="/roles">Role</a></li>
-        <li class="nav=item"><a class="nav-link" href="/shifts">Shift</a></li>
-        <li class="nav-item"><a class="nav-link" href="/schedule">Schedule</a></li>
-        <li class="nav-item"><a class="nav-link" href="/accounts">Account</a></li>
-    </ul>
-</nav>
+<body>
+<header th:fragment="header">
+    <div id="mag"><b>Mask</b> Schedule</div>
+    <div class="nav">
+        <span id="admin-portal" class="bold"><a href="/">Home page</a></span> | &nbsp;
+        <th:block th:unless="${loggedIn}">
+            <a class="navlink" href="/login">Log In</a>
+            <a class="navlink" href="/register">Register</a>
+        </th:block>
+        <th:block th:if="${loggedIn}">
+            <a class="navlink" href="/employees">employees</a>
+            <a class="navlink" href="/roles">Role</a>
+            <a class="navlink" href="/shifts">shifts</a>
+            <a class="navlink" href="/schedule">Schedule</a>
+            <a class="navlink" href="/accounts">Account</a>
+            <a class="navlink" href="/logout">Log Out</a>
+        </th:block>
+    </div>
+</header>
 </body>
 </html>

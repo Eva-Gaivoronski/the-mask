@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-<h1></h1>
-<header th:replace="fragments :: header"></header>
-<nav>
-    <ul>
-        <li><a href="shifts/add">Create Shift</a></li>
-        <li><a href="shifts/send">Send Schedule</a></li>
-    </ul>
-</nav>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="shifts/add">Create Shift</a>
+        <a class="navlink" href="shifts/send">Send Schedule</a>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
     <tr>
