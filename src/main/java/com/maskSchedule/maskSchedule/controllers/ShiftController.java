@@ -88,11 +88,12 @@ public class ShiftController {
     }
 
     @GetMapping("edit/{shiftId}")
-    public String displayShiftEditForm(Model model, @PathVariable int shiftId) {
+    public String displayShiftEditForm(Model model, @PathVariable int shiftId, HttpSession session) {
         Optional<Shift> editShift = shiftRepository.findById(shiftId);
         if (editShift.isPresent()){
             Shift shift = (Shift) editShift.get();
 
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             model.addAttribute("title", "Edit Shift");
             model.addAttribute("shift", shift);
             model.addAttribute("employee", employeeRepository.findAll());
@@ -115,7 +116,10 @@ public class ShiftController {
     @PostMapping("edit")
     public String processingShiftEditForm (@ModelAttribute @Valid Shift shift, Errors errors, @PathVariable int shiftId,
                                            LocalTime shiftStart, LocalTime shiftEnd, String shiftDay, Role role,
-                                           Model model) {
+                                           Model model, HttpSession session) {
+
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Shift");
@@ -144,7 +148,7 @@ public class ShiftController {
     }
 
     @GetMapping("delete/{shiftId}")
-    public String displayShiftDeleteForm(Model model, @PathVariable int shiftId) {
+    public String displayShiftDeleteForm(Model model, @PathVariable int shiftId, HttpSession session) {
         Optional<Shift> deleteShift = shiftRepository.findById(shiftId);
         if (deleteShift.isPresent()){
             Shift shift = (Shift) deleteShift.get();
@@ -152,6 +156,7 @@ public class ShiftController {
             model.addAttribute("shift", shift);
             model.addAttribute("employee", employeeRepository.findAll());
             model.addAttribute("role", roleRepository.findAll());
+            model.addAttribute("loggedIn", session.getAttribute("user") != null);
             List<String> daysOfWeek = new ArrayList<>();
             daysOfWeek.add("Monday");
             daysOfWeek.add("Tuesday");
@@ -187,7 +192,14 @@ public class ShiftController {
     }
 
     @GetMapping("sendSchedule")
-    public String displaySendScheduleForm() {
+    public String displaySendScheduleForm(Model model, HttpSession session) {
+        model.addAttribute("title", "Delete Shift");
+        model.addAttribute("shift", shiftRepository.findAll());
+        model.addAttribute("employees", employeeRepository.findAll());
+        model.addAttribute("role", roleRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+
+        return "shifts/sendSchedule";
 
     }
 

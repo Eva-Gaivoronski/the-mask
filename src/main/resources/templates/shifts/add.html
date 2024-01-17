@@ -3,6 +3,11 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a th:text="${'Create Shift'}"></a>
+    </div>
+</div>
 <form method="post">
     <div class="form-group">
         <Label>Employee

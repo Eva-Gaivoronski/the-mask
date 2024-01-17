@@ -3,8 +3,12 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a th:text="${'Edit Shift Details'}"></a>
+    </div>
+</div>
 <div class="shift-listing">
-    <p>Current Shift:</p>
     <p th:text="${'Day: ' + shift.shiftDay}"></p>
     <p th:text="${'Shift Start: ' + shift.shiftStart}"></p>
     <p th:text="${'Shift End: ' + shift.shiftEnd}"></p>
