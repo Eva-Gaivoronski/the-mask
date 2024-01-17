@@ -186,4 +186,9 @@ public class ShiftController {
         return "redirect:/shifts";
     }
 
+    @GetMapping("sendSchedule")
+    public String displaySendScheduleForm() {
+
+    }
+
 }

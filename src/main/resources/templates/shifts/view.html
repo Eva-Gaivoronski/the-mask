@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
-
-<body class="container  body-content">
-<h1 th:text="${'Employee: ' + shift.employee.name}">Default Title</h1>
-
-<nav th:replace="~{fragments :: header}"></nav>
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
 
 <div class="shift-listing">
     <p th:text="${'Day: ' + shift.shiftDay}"></p>

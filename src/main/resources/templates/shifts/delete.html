@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-<h1></h1>
 <header th:replace="~{fragments :: header}"></header>
 <h2 th:text="${shift.employee.name}"></h2>
 <div class="shift-listing">

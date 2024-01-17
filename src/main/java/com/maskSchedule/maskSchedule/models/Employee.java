@@ -34,7 +34,7 @@ public class Employee {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "shift_id")
-    private List<Shift> shifts = new ArrayList<>();
+    public static List<Shift> shifts = new ArrayList<>();
 
     //Constructors
 
