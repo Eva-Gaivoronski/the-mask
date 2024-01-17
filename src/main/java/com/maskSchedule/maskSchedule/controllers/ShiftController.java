@@ -143,4 +143,47 @@ public class ShiftController {
 
     }
 
+    @GetMapping("delete/{shiftId}")
+    public String displayShiftDeleteForm(Model model, @PathVariable int shiftId) {
+        Optional<Shift> deleteShift = shiftRepository.findById(shiftId);
+        if (deleteShift.isPresent()){
+            Shift shift = (Shift) deleteShift.get();
+            model.addAttribute("title", "Delete Shift");
+            model.addAttribute("shift", shift);
+            model.addAttribute("employee", employeeRepository.findAll());
+            model.addAttribute("role", roleRepository.findAll());
+            List<String> daysOfWeek = new ArrayList<>();
+            daysOfWeek.add("Monday");
+            daysOfWeek.add("Tuesday");
+            daysOfWeek.add("Wednesday");
+            daysOfWeek.add("Thursday");
+            daysOfWeek.add("Friday");
+            daysOfWeek.add("Saturday");
+            daysOfWeek.add("Sunday");
+            model.addAttribute("daysOfWeek", daysOfWeek);
+
+            return "shifts/delete";
+        }
+        return "shifts/delete";
+    }
+
+    @PostMapping("delete/{shiftId}")
+    public String processShiftDeleteForm(@ModelAttribute @Valid Shift shift, Errors errors, @PathVariable int shiftId,Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Delete Shift");
+            model.addAttribute("shifts", shiftRepository.findAll());
+            return "shifts/delete";
+        }
+        Optional<Shift> deleteShift = shiftRepository.findById(shiftId);
+        if (deleteShift.isPresent()) {
+            shift = (Shift) deleteShift.get();
+
+            model.addAttribute("shift", shift);
+
+            shiftRepository.deleteById(shiftId);
+            return "redirect:/shifts";
+        }
+        return "redirect:/shifts";
+    }
+
 }

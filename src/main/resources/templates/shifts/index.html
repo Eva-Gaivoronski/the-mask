@@ -22,6 +22,7 @@
         <th>End Time</th>
         <th>Role</th>
         <th>Edit</th>
+        <th>Delete</th>
 
     </tr>
     <tr th:each="shift : ${shifts}">
@@ -33,6 +34,9 @@
         <p th:unless="${shift.role != null}" th:text="${'N/A'}"></p></td>
         <td>
             <a th:href="@{/shifts/edit/{id}(id=${shift.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{shifts/delete/{id}(id=${shift.id})}">Delete</a>
         </td>
     </tr>
 </table>
