@@ -13,6 +13,11 @@ package com.maskSchedule.maskSchedule.controllers;
         import org.springframework.ui.Model;
         import org.springframework.validation.Errors;
         import org.springframework.web.bind.annotation.*;
+//        import java.util.*;
+//        import javax.activation.*;
+//        import javax.mail.*;
+//        import javax.mail.internet.*;
+//        import javax.naming.*;
 
         import java.time.LocalTime;
         import java.time.temporal.ChronoUnit;
@@ -193,7 +198,7 @@ public class ShiftController {
 
     @GetMapping("sendSchedule")
     public String displaySendScheduleForm(Model model, HttpSession session) {
-        model.addAttribute("title", "Delete Shift");
+        model.addAttribute("title", "Send Schedule");
         model.addAttribute("shift", shiftRepository.findAll());
         model.addAttribute("employees", employeeRepository.findAll());
         model.addAttribute("role", roleRepository.findAll());
@@ -201,6 +206,28 @@ public class ShiftController {
 
         return "shifts/sendSchedule";
 
+    }
+
+    @PostMapping("sendSchedule")
+    public String processSendScheduleForm(Model model, HttpSession session) {
+        model.addAttribute("title", "Send Schedule");
+        model.addAttribute("shift", shiftRepository.findAll());
+        model.addAttribute("employees", employeeRepository.findAll());
+        model.addAttribute("role", roleRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+
+        List<Employee> employeeList = (List<Employee>) employeeRepository.findAll();
+
+        //convert shift data into some sort of JSON format
+
+        for (Employee e : employeeList) {
+            //check if there are shifts
+            //if there are shifts send them to their emails with API help
+        }
+
+
+
+        return"redirect:/shifts";
     }
 
 }
