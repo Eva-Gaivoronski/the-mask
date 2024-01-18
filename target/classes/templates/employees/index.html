@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="employees/add">Add Employee</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>Employee</th>
+        <th>Active</th>
+        <th>Training</th>
+        <th>Roles</th>
+    </tr>
+    <thead>
+    <tr>
+        <th>Employees</th>
+    </tr>
+    </thead>
+    <tr th:each="employee : ${employees}">
+        <td>
+            <a th:href="@{'/employees/view/' + ${employee.id}}" th:text="${employee.name}"></a>
+        </td>
+        <td th:text="${employee.isActive}"></td>
+        <td th:text="${employee.isTraining}"></td>
+        <td>
+            <li th:each="role : ${employee.getRole}">
+                <a th:href="@{'/roles/view/' + ${role.id}}" th:text="${role.name}"></a>
+            </li>
+        </td>
+        <td>
+            <a th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

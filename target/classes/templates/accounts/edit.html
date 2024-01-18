@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<form method="post" action="/accounts/edit">
+    <div class="form-group">
+        <label>
+            <input type="hidden" th:value="${account.id}" name="accountId">
+        </label>
+        <label>Name
+            <input type="text" name="name" class="form-control">
+        </label>
+    </div>
+    <div class="form-group">
+        <label></label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Edit Account" class="btn btn-success">
+    </div>
+
+</form>
+</body>
+</html>

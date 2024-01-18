@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a th:text="${'Shift Details'}"></a>
+    </div>
+</div>
+
+<div class="shift-listing">
+    <p th:text="${'Day: ' + shift.shiftDay}"></p>
+    <p th:text="${'Shift Start: ' + shift.shiftStart}"></p>
+    <p th:text="${'Shift End: ' + shift.shiftEnd}"></p>
+    <p th:text="${'Hours: ' + shift.getShiftHours()}"></p>
+    <p th:if="${shift.role != null}" th:text="${'Role: ' + shift.role.name}"></p>
+</div>
+
+
+</body>
+</html>

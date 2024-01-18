@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a th:text="${shift.employee.name}"></a>
+    </div>
+</div>
+<div class="shift-listing">
+    <p>Current Shift:</p>
+    <p th:text="${'Day: ' + shift.shiftDay}"></p>
+    <p th:text="${'Shift Start: ' + shift.shiftStart}"></p>
+    <p th:text="${'Shift End: ' + shift.shiftEnd}"></p>
+    <p th:text="${'Hours: ' + shift.getShiftHours()}"></p>
+    <p th:if="${shift.role != null}" th:text="${'Role: ' + shift.role.name}"></p>
+</div>
+<td>
+    <form th:action="@{/shifts/delete/{id}(id=${shift.id})}" th:object="${shift}" method="post">
+        <label>Delete?
+            <input type="submit" th:field="${shift}" onClick="return confirm('Delete Shift? (This cannot be undone!)')">
+        </label>
+
+    </form>
+</td>
+
+</body>
+</html>

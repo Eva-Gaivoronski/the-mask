@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="accounts/add">Add Account</a>
+        <a class="navlink" href="accounts/dayoff">Take Time Off</a>
+        <a class="navlink" href="accounts/changeschedule">Change Schedule</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>Employee</th>
+        <th>Shift</th>
+    </tr>
+    <thead>
+    <tr>
+        <th>Schedule</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:each="employee : ${employees}" th:text="${employee.name}"></td>
+<!--        <td th:each="shift : ${shifts}" th:text="$"></td>-->
+    </tr>
+</table>
+
+<!--<a th:href="@{accounts/edit/{id}(id={account.id)}">Edit</a>-->
+
+</body>
+</html>

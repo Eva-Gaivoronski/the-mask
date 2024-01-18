@@ -17,12 +17,6 @@ package com.maskSchedule.maskSchedule.controllers;
         import java.util.ArrayList;
         import java.util.List;
         import java.util.Optional;
-        import java.util.*;
-        import javax.activation.*;
-        import javax.mail.*;
-        import javax.mail.internet.*;
-        import javax.naming.*;
-
 
 @Controller
 @RequestMapping("shifts")
