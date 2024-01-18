@@ -15,7 +15,7 @@
         <th:block th:each="employee : ${employees}">
 <!--            <td th:if="${employee.shifts!=null}">-->
             <div>
-            <input type="checkbox" name="employee" th:value="${employee.name}">
+            <input type="checkbox" name="employee" th:value="${employee.id}">
             <label th:text="${employee.name}"></label>
             </div>
 <!--            </td>-->

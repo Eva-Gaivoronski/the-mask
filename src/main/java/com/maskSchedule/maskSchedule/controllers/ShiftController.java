@@ -5,6 +5,7 @@ package com.maskSchedule.maskSchedule.controllers;
         import com.maskSchedule.maskSchedule.data.ShiftRepository;
         import com.maskSchedule.maskSchedule.models.Employee;
         import com.maskSchedule.maskSchedule.models.Role;
+        import com.maskSchedule.maskSchedule.models.SendEmail;
         import com.maskSchedule.maskSchedule.models.Shift;
         import jakarta.servlet.http.HttpSession;
         import jakarta.validation.Valid;
@@ -202,21 +203,18 @@ public class ShiftController {
     }
 
     @PostMapping("sendSchedule")
-    public String processSendScheduleForm(Model model, HttpSession session) {
-        model.addAttribute("title", "Send Schedule");
-        model.addAttribute("shift", shiftRepository.findAll());
-        model.addAttribute("employees", employeeRepository.findAll());
-        model.addAttribute("role", roleRepository.findAll());
+    public String processSendScheduleForm(Model model, @RequestParam List<Integer> employee, HttpSession session) {
         model.addAttribute("loggedIn", session.getAttribute("user") != null);
 
-        List<Employee> employeeList = (List<Employee>) employeeRepository.findAll();
+
+        System.out.println(employee);
 
         //convert shift data into some sort of JSON format
 
-        for (Employee e : employeeList) {
-            //check if there are shifts
-            //if there are shifts send them to their emails with API help
-        }
+//        for (Employee e : employeeList) {
+//            //check if there are shifts
+//            //if there are shifts send them to their emails with API help
+//        }
 
 
 
