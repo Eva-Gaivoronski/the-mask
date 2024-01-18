@@ -1,7 +1,6 @@
 package com.maskSchedule.maskSchedule.models;
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+
 import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
@@ -10,10 +9,15 @@ import com.sendgrid.helpers.mail.objects.Email;
 import java.io.IOException;
 
 public class SendEmail {
-    public static void SendSchedule(String[] args) throws IOException {
+
+
+    public SendEmail(Employee foundEmployee) {
+    }
+
+    public static void SendEmail(Employee employee) throws IOException {
         Email from = new Email("antsilva93@gmail.com");
         String subject = "You have been scheduled; Login to see new schedule.";
-        Email to = new Email("antsilva93@gmail.com");
+        Email to = new Email(employee.geteMail());
         Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
         Mail mail = new Mail(from, subject, to, content);
 
@@ -30,5 +34,6 @@ public class SendEmail {
         } catch (IOException ex) {
             throw ex;
         }
+        System.out.println("it worked or something");
     }
 }
