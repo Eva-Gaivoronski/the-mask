@@ -231,7 +231,7 @@ public class ShiftController {
                 Email from = new Email("antsilva93@gmail.com");
                 String subject = "You have been scheduled; Login to see new schedule.";
                 Email to = new Email(foundEmployee.get().geteMail());
-                Content content = new Content("text/plain", "This counts as a feature.");
+                Content content = new Content("text/plain", "Future Schedule Compiling.");
                 Mail mail = new Mail(from, subject, to, content);
 
                 SendGrid sg = new SendGrid("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");
