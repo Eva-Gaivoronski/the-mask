@@ -36,6 +36,10 @@ public class Employee {
     @JoinColumn(name = "shift_id")
     private List<Shift> shifts = new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employees")
+    private List<Day> days = new ArrayList<>();
+
     //Constructors
 
     public Employee() {}

@@ -18,8 +18,9 @@ public class Month {
     @ManyToOne
     @JoinColumn(name = "year")
     private Year year;
-    @OneToMany(mappedBy = "month", cascade = CascadeType.ALL)
-    List<Week> weeks = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "month")
+    private final List<Week> weeks = new ArrayList<>();
 
     public Month () {}
 
@@ -66,8 +67,8 @@ public class Month {
         return weeks.get(weekInt);
     }
 
-    public void addWeek(Week week) {
-        weeks.add(new Week());
+    public void addWeek(int week) {
+        weeks.add(new Week(week));
     }
 
     public String getName() {

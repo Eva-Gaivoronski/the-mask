@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Schedule for the year of ' + year.year}">Default Title</h1>
+
+<nav th:replace="~{fragments :: header}"></nav>
+<form>
+    <table class="table table-striped">
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+        <tr th:each="week : ${year.months[selectedMonth].weeks}">
+            <td  th:each="day: ${week.days}">
+                <div th:text="${day}"></div>
+                <div class="days" th:if="0 != ${day.getDay()}">
+                    <div th:each="employee: ${day.employees}" >
+                        <a th:text="${employee}"></a>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

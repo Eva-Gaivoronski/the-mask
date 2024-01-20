@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
+<head th:insert="~{fragments :: head}">
 </head>
 <body>
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
-<form th:action="@{/schedule/results}" method="post">
+<form method="post">
 <select name="selectedMonth" id="selectedMonth" th:selected="selected">
-    <option th:each="month : ${year.months}" th:value="${month.month}"
+    <option th:each="month : ${year.months}" th:value="${month.month}" onclick="submit"
             th:selected="${month.month} == ${selectedMonth}" th:text="${month.name}"></option>
 </select>
-    <input type="text" id="year" th:value="${year.getYear()}"/>
-    <input type="submit" value="Apply Changes">
-
+    <input type="number" name="year" id="year" th:value="${year.year}"/>
+    <input type="submit" value="Create"/>
 </form>
-<hr />
-
-
-<table class="table table-striped">
-    <tr>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-    </tr>
-    <tr th:each="week : ${year.months[selectedMonth].weeks}">
-        <td th:each="day: ${week.days}">
-            <div th:text="${day}"></div>
-            <input type="button" th:if="0 != ${day.getDay()}" onclick="openForm()" value="Add Event"/>
-        </td>
-    </tr>
-
-</table>
 </body>
 </html>
