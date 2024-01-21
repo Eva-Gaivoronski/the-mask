@@ -11,7 +11,7 @@
                 th:selected="${month.month} == ${selectedMonth}" th:text="${month.name}"></option>
     </select>
     <input type="hidden" name="yearId" th:value="${year.id}">
-    <input type="number" name="year" id="year" th:value="${year.getYear()}"/>
+    <a th:text="${year.getYear()}"></a>
     <input type="submit" value="Apply Changes"/>
 
 <hr/>
@@ -30,12 +30,11 @@
             <td  th:each="day: ${week.days}">
                 <div th:text="${day}"></div>
                 <div class="days" th:if="0 != ${day.getDay()}">
-                    <div th:each="employee: ${employees}" >
-                        <input type="checkbox" th:object="${day}" name="day" id="day" th:value="${day.addEmployee(employee)}" th:text="${employee.name}"
-                               th:checked="${day.addEmployee(employee)}"/>
-                    </div>
                     <div>
                         <a th:href="@{/schedule/assign/{id}(id=${day.id})}">Assign</a>
+                    </div>
+                    <div th:each="employee: ${day.employees}" >
+                        <a th:text="${employee.name}"></a>
                     </div>
                 </div>
 

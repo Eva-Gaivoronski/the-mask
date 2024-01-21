@@ -78,4 +78,8 @@ public class Month {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Year getYear() {
+        return year;
+    }
 }

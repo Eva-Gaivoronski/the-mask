@@ -74,4 +74,8 @@ public class Week {
     public void addBlankDay(){
         days.add(new Day());
     }
+
+    public Month getMonth() {
+        return month;
+    }
 }

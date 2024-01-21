@@ -22,7 +22,7 @@
                 <div th:text="${day}"></div>
                 <div class="days" th:if="0 != ${day.getDay()}">
                     <div th:each="employee: ${day.employees}" >
-                        <a th:text="${employee}"></a>
+                        <a th:text="${employee.name}"></a>
                     </div>
                 </div>
 

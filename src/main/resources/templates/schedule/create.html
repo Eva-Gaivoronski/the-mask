@@ -11,6 +11,9 @@
             th:selected="${month.month} == ${selectedMonth}" th:text="${month.name}"></option>
 </select>
     <input type="number" name="year" id="year" th:value="${year.year}"/>
+    <div>
+        <p class="error" th:errors="${year.year}"></p>
+    </div>
     <input type="submit" value="Create"/>
 </form>
 </body>

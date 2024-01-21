@@ -2,8 +2,12 @@ package com.maskSchedule.maskSchedule.models;
 
 import com.maskSchedule.maskSchedule.data.DayRepository;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.*;
 
@@ -13,6 +17,8 @@ public class Year {
     @GeneratedValue
     private int id;
     @NotNull
+    @Min(value = 1800, message = "Please pick a year past 1800.")
+    @Max(value = 9999, message = "Please pick a year before 9999.")
     private int year;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "year")

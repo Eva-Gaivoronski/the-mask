@@ -2,10 +2,8 @@ package com.maskSchedule.maskSchedule.models;
 
 import com.maskSchedule.maskSchedule.models.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +28,7 @@ public class Employee {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
+    @NotEmpty(message = "Please select a role")
     private List<Role> role = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

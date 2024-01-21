@@ -73,4 +73,7 @@ public class Day {
         return employees;
     }
 
+    public Week getWeek() {
+        return week;
+    }
 }

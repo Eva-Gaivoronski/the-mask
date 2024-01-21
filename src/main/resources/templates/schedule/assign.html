@@ -5,6 +5,20 @@
 <body>
 <h1></h1>
 <header th:replace="~{fragments :: header}"></header>
-
+<form method="post">
+    <input type="hidden" name="yearId" th:value="${year.id}"/>
+    <input type="hidden" name="dayId" th:value="${day.id}"/>
+    <input type="submit" value="Submit/return"/>
+    <table class="table table-striped">
+        <tr>
+            <th>Employee Name</th>
+        </tr>
+        <tr th:each="employee: ${employees}">
+            <td >
+                <input type="checkbox"  name="employee" id="employee" th:value="${employee.id}" th:text="${employee.name}"/>
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
