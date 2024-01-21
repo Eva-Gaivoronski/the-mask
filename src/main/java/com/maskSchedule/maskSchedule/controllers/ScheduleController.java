@@ -38,7 +38,7 @@ public class ScheduleController {
 
 
     @GetMapping
-    public String displayScheduleIndex(Model model) {
+    public String displayScheduleIndex(Model model, HttpSession session) {
        model.addAttribute("title", "Schedule Main");
         model.addAttribute("loggedIn", session.getAttribute("user") != null);
        model.addAttribute("years", yearRepository.findAll());
@@ -51,7 +51,7 @@ public class ScheduleController {
         //Year newYear = new Year());
         Integer selectedMonth = cal.get(Calendar.MONTH);
         model.addAttribute("title", "Create Schedule");
-        model.addAttribute("month",newYear.getMonth(cal.get(Calendar.MONTH)));
+        //model.addAttribute("month",newYear.getMonth(cal.get(Calendar.MONTH)));
         model.addAttribute("loggedIn", session.getAttribute("user") != null);
         model.addAttribute("selectedMonth",selectedMonth);
         model.addAttribute("select", selectedMonth);
