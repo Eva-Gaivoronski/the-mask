@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-<h1></h1>
-<header th:replace="fragments :: header"></header>
-<nav>
-    <ul>
-        <li><a href="shifts/add">Create Shift</a></li>
-        <li><a href="shifts/send">Send Schedule</a></li>
-    </ul>
-</nav>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="shifts/add">Create Shift</a>
+        <a class="navlink" href="shifts/send">Send Schedule</a>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -23,14 +21,19 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th>Role</th>
+        <th>Edit</th>
 
     </tr>
     <tr th:each="shift : ${shifts}">
-        <td th:text="${shift.employee.name}"></td>
+        <td><a th:href="@{'/shifts/view/' + ${shift.id}}" th:text="${shift.employee.name}"></a></td>
         <td th:text="${shift.shiftDay}"></td>
         <td th:text="${shift.shiftStart}"></td>
         <td th:text="${shift.shiftEnd}"></td>
-        <td th:text="${shift.role.name}"></td>
+        <td><p th:if="${shift.role != null}" th:text="${shift.role.name}"></p>
+        <p th:unless="${shift.role != null}" th:text="${'N/A'}"></p></td>
+        <td>
+            <a th:href="@{/shifts/edit/{id}(id=${shift.id})}">Edit</a>
+        </td>
     </tr>
 </table>
 

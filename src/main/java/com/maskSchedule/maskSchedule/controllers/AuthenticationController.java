@@ -75,7 +75,7 @@ public class AuthenticationController {
         String verifyPassword = registrationFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)){
             errors.rejectValue("password", "password.mismatch", "passwords do not match");
-            return "redirect:/artworks";
+            return "register";
 
         }
         User newUser = new User(registrationFormDTO.getUsername(), registrationFormDTO.getPassword());
@@ -108,7 +108,7 @@ public class AuthenticationController {
             errors.rejectValue(
                     "password",
                     "login.invalid",
-                    "Credentials invalid. please try again with correct username/ password combination."
+                    "Credentials invalid. please try again with correct username/password combination."
             );
             return "login";
         }
