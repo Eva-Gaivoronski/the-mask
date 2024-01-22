@@ -17,7 +17,7 @@ public class Day {
     private Week week;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "days")
-    private final List<Employee> employees = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
 
 
@@ -67,6 +67,10 @@ public class Day {
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees ;
     }
 
     public List<Employee> getEmployees() {

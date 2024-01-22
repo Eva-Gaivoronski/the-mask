@@ -14,10 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("schedule")
@@ -128,7 +125,7 @@ public class ScheduleController {
     }
 
     @PostMapping("assign/{dayId}")
-    public String processDisplayAssignEmployee(Model model, @RequestParam(name = "employee", required = false) Integer employeeId,
+    public String processDisplayAssignEmployee(Model model, @RequestParam(name = "employee", required = false) List<Integer> employeeId,
                                                @RequestParam(name = "yearId") int yearId, @RequestParam(name = "dayId") int dayId) {
         String returnString = "redirect:/schedule/edit/"+yearId;
         if (employeeId == null) {
@@ -137,12 +134,10 @@ public class ScheduleController {
         Optional<Day> thisDay = dayRepository.findById(dayId);
         if (thisDay.isPresent()){
             Day day = (Day) thisDay.get();
-            Optional<Employee> thisEmployee = employeeRepository.findById(employeeId);
-            if (thisEmployee.isPresent()){
-                Employee employee = (Employee) thisEmployee.get();
-                day.addEmployee(employee);
+            List<Employee> theseEmployee = (List<Employee>) employeeRepository.findAllById(employeeId);
+                day.setEmployees(theseEmployee);
                 dayRepository.save(day);
-            }
+
         }
 
         return returnString;
