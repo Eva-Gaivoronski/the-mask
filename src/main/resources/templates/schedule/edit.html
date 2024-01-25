@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert="~{fragments :: head}">
+</head>
+<body>
+<h1></h1>
+<header th:replace="~{fragments :: header}"></header>
+<form method="post" th:action="@{/schedule/edits/{yearId}}">
+    <select name="selectedMonth" id="selectedMonth" th:selected="selected">
+        <option th:each="month : ${year.months}" th:value="${month.month}"
+                th:selected="${month.month} == ${selectedMonth}" th:text="${month.name}"></option>
+    </select>
+    <input type="hidden" name="yearId" th:value="${year.id}">
+    <a th:text="${year.getYear()}"></a>
+    <input type="submit" value="Apply Changes"/>
+
+<hr/>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+        <tr th:each="week : ${year.months[selectedMonth].weeks}">
+            <td  th:each="day: ${week.days}">
+                <div th:text="${day}"></div>
+                <div class="days" th:if="0 != ${day.getDay()}">
+                    <div>
+                        <a th:href="@{/schedule/assign/{id}(id=${day.id})}">Assign</a>
+                    </div>
+                    <div th:each="employee: ${day.employees}" >
+                        <a th:text="${employee.name}"></a>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

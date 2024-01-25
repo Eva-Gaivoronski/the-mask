@@ -19,8 +19,9 @@ public class Week {
     @JoinColumn(name = "month")
     private Month month;
 
-    @OneToMany(mappedBy = "week", cascade = CascadeType.ALL)
-    List<Day> days = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "week")
+    private final List<Day> days = new ArrayList<>();
 
     public Week () {}
 
@@ -72,5 +73,9 @@ public class Week {
 
     public void addBlankDay(){
         days.add(new Day());
+    }
+
+    public Month getMonth() {
+        return month;
     }
 }

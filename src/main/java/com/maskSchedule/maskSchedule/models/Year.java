@@ -1,7 +1,13 @@
 package com.maskSchedule.maskSchedule.models;
 
+import com.maskSchedule.maskSchedule.data.DayRepository;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.*;
 
@@ -11,9 +17,12 @@ public class Year {
     @GeneratedValue
     private int id;
     @NotNull
+    @Min(value = 1800, message = "Please pick a year past 1800.")
+    @Max(value = 9999, message = "Please pick a year before 9999.")
     private int year;
-    @OneToMany(mappedBy = "year", cascade = CascadeType.ALL)
-    List<Month> months = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "year")
+    private final List<Month> months = new ArrayList<>();
 
     // building the year
     private void build() {
@@ -48,23 +57,23 @@ public class Year {
             int numberOfWeeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
 
             //add month to month list
-            months.add(new Month(monthInt,monthNames.get(monthInt)));
+            this.addMonth(monthInt,monthNames.get(monthInt));
             for (int weekInt = 0; weekInt < numberOfWeeks; weekInt++) {
 
                 //add weeks to month
-                months.get(monthInt).addWeek(new Week(weekInt));
+                this.months.get(monthInt).addWeek(weekInt);
 
                 //check first week to set start day of the month
                 if (weekInt == 0) {
                     //add empty days until the start of the month for the first week
                     for (int blankDay = 0; blankDay < startDay; blankDay++) {
-                        months.get(monthInt).getWeek(weekInt).addBlankDay();
+                        this.months.get(monthInt).getWeek(weekInt).addBlankDay();
                     }
 
                     for (int daysOfFirstWeek = startDay; daysOfFirstWeek < 7; daysOfFirstWeek++) {
 
                         //start counting days of the month
-                        months.get(monthInt).getWeek(weekInt).addDay(day);
+                        this.months.get(monthInt).getWeek(weekInt).addDay(day);
                         day++;
 
                     }
@@ -74,7 +83,7 @@ public class Year {
                 if (weekInt != 0) {
                     for (int daysOfWeek = 0; daysOfWeek < 7; daysOfWeek++) {
                         if (day <= numberOfDays) {
-                            months.get(monthInt).getWeek(weekInt).addDay(day);
+                            this.months.get(monthInt).getWeek(weekInt).addDay(day);
                             day++;
 
                         }
@@ -86,6 +95,10 @@ public class Year {
     }
 
 
+
+    public Year() {
+        build();
+    }
 
     public Year(int year) {
         this.year = year;
@@ -122,6 +135,10 @@ public class Year {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public void addMonth(int monthNum, String name) {
+        months.add(new Month(monthNum, name));
     }
 
     public List<Month> getMonths() {

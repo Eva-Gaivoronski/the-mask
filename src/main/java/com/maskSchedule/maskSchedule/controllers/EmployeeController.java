@@ -44,11 +44,13 @@ public class EmployeeController {
 
     @PostMapping("add")
     public String processingAddEmployeeForm(@ModelAttribute @Valid Employee newEmployee,
-                                            Errors errors, Model model, @RequestParam List<Integer> role,
+                                            Errors errors, Model model, @RequestParam(required = false) List<Integer> role,
                                             HttpSession session) {
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Employee");
+            model.addAttribute("roles", roleRepository.findAll());
             model.addAttribute("loggedIn", session.getAttribute("user") != null);
+            model.addAttribute("roleError", "Please select at least 1 role.");
             return "employees/add";
         }
 

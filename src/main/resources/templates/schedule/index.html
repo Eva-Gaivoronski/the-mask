@@ -10,6 +10,26 @@
 <form action="/schedule/create">
     <input type="submit" value="Create Schedule">
 </form>
+<div id="admin-bar">
+<!--    <div class="nav">-->
+<!--        <a class="navlink" href="employees/add">Add Employee</a>-->
+<!--    </div>-->
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Schedule</th>
+    </tr>
+    </thead>
+    <tr th:each="year : ${years}">
+        <td>
+            <a th:href="@{'/schedule/view/' + ${year.id}}" th:text="${year.year}"></a>
+        </td>
+        <td>
+            <a th:href="@{/schedule/edit/{id}(id=${year.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
