@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Employee: ' + employee.name}">Default Title</h1>
+
+<nav th:replace="~{fragments :: header}"></nav>
+
+<div class="job-listing">
+    <p th:text="${'ID: ' + employee.id}"></p>
+    <p th:text="${'Name: ' + employee.name}"></p>
+    <p th:text="${'Hours: ' + employee.hours}"></p>
+    <p th:text="${'Active: ' + employee.isActive}"></p>
+    <p th:text="${'Email: ' + employee.geteMail}"></p>
+    <p th:text="${'Phone Number: ' + employee.getPhoneNumber}"></p>
+    <p> Employees:
+    <ul>
+        <li th:each="role : ${employee.getRole}">
+            <a th:href="@{'/roles/view/' + ${role.id}}" th:text="${role.name}"></a>
+        </li>
+    </ul>
+    </p>
+</div>
+
+
+</body>
+</html>

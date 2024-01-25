@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="roles/add">Add Role</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tr th:each="role : ${roles}">
+        <td>
+            <a th:href="@{'/roles/view/' + ${role.id}}" th:text="${role.name}"></a>
+        </td>
+        <td th:text="${role.shortHand}"></td>
+        <td>
+            <a th:href="@{/roles/edit/{id}(id=${role.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

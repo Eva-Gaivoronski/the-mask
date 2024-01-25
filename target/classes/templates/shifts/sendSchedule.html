@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a th:text="${'Schedule Distribution'}"></a>
+    </div>
+</div>
+<form method="post">
+    <div class="form-group">
+        <label th:for="Employees">Choose Employee(s) for schedule distribution:</label>
+        <div>
+        <th:block th:each="employee : ${employees}">
+<!--            <td th:if="${employee.shifts!=null}">-->
+            <div>
+            <input type="checkbox" name="employee" th:value="${employee.name}">
+            <label th:text="${employee.name}"></label>
+            </div>
+<!--            </td>-->
+        </th:block>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="submit" class="btn btn-success">
+    </div>
+</form>
+</body>
+</html>
